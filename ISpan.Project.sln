@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SongSystem", "SongSystem\SongSystem.csproj", "{97F5B440-8F40-480C-A674-F85D926C82BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISpan.SQL.Utility", "ISpan.SQL.Utility\ISpan.SQL.Utility.csproj", "{C7939B24-ECAD-44AF-B3AF-61A87A1738D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97F5B440-8F40-480C-A674-F85D926C82BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F5B440-8F40-480C-A674-F85D926C82BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97F5B440-8F40-480C-A674-F85D926C82BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F5B440-8F40-480C-A674-F85D926C82BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7939B24-ECAD-44AF-B3AF-61A87A1738D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7939B24-ECAD-44AF-B3AF-61A87A1738D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7939B24-ECAD-44AF-B3AF-61A87A1738D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7939B24-ECAD-44AF-B3AF-61A87A1738D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4F25F49-800F-4277-B35D-38F796B31F7A}
+	EndGlobalSection
+EndGlobal
