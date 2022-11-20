@@ -138,14 +138,39 @@
     <Compile Include="Forms\Song\SongsForm.Designer.cs">
       <DependentUpon>SongsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\User\CreateUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User\CreateUserForm.Designer.cs">
+      <DependentUpon>CreateUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User\EditUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User\EditUserForm.Designer.cs">
+      <DependentUpon>EditUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User\UsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User\UsersForm.Designer.cs">
+      <DependentUpon>UsersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Infra\DAOs\SongDAO.cs" />
     <Compile Include="Infra\DAOs\SongDetailDAO.cs" />
+    <Compile Include="Infra\DAOs\UserDAO.cs" />
     <Compile Include="Infra\Extensions\StringExts.cs" />
     <Compile Include="Infra\DAOs\AlbumDAO.cs" />
     <Compile Include="Infra\DAOs\GenreDAO.cs" />
     <Compile Include="Infra\DAOs\GroupDAO.cs" />
     <Compile Include="Infra\DAOs\SingerDAO.cs" />
     <Compile Include="Infra\ValidationHelper.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,17 +183,21 @@
     <Compile Include="Models\DTOs\SingerDTO.cs" />
     <Compile Include="Models\DTOs\SongDetailDTO.cs" />
     <Compile Include="Models\DTOs\SongDTO.cs" />
+    <Compile Include="Models\DTOs\UserDTO.cs" />
     <Compile Include="Models\Services\AlbumService.cs" />
     <Compile Include="Models\Services\GenreService.cs" />
     <Compile Include="Models\Services\GroupService.cs" />
     <Compile Include="Models\Services\SingerService.cs" />
     <Compile Include="Models\Services\SongDetailService.cs" />
     <Compile Include="Models\Services\SongService.cs" />
+    <Compile Include="Models\Services\UserService.cs" />
     <Compile Include="Models\ViewModels\AlbumVM.cs" />
     <Compile Include="Models\ViewModels\GenreVM.cs" />
     <Compile Include="Models\ViewModels\GroupVM.cs" />
+    <Compile Include="Models\ViewModels\LoginVM.cs" />
     <Compile Include="Models\ViewModels\SingerVM.cs" />
     <Compile Include="Models\ViewModels\SongVM.cs" />
+    <Compile Include="Models\ViewModels\UserIndexVM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Album\AlbumsForm.resx">
@@ -216,6 +245,18 @@
     <EmbeddedResource Include="Forms\Song\SongsForm.resx">
       <DependentUpon>SongsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User\CreateUserForm.resx">
+      <DependentUpon>CreateUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User\EditUserForm.resx">
+      <DependentUpon>EditUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User\UsersForm.resx">
+      <DependentUpon>UsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -234,6 +275,7 @@
     <None Include="Properties\DataSources\SongSystem.Models.ViewModels.GroupIndexVM.datasource" />
     <None Include="Properties\DataSources\SongSystem.Models.ViewModels.SingerIndexVM.datasource" />
     <None Include="Properties\DataSources\SongSystem.Models.ViewModels.SongIndexVM.datasource" />
+    <None Include="Properties\DataSources\SongSystem.Models.ViewModels.UserIndexVM.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

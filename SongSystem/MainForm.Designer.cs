@@ -35,6 +35,7 @@
 			this.maintainAlbumsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.maintainGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.lOGOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.maintainUsersToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -51,6 +52,7 @@
             this.maintainSongGenresToolStripMenuItem,
             this.maintainAlbumsToolStripMenuItem,
             this.maintainGroupsToolStripMenuItem,
+            this.maintainUsersToolStripMenu,
             this.lOGOUTToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
@@ -113,6 +115,15 @@
 			this.lOGOUTToolStripMenuItem.Text = "LOGOUT";
 			this.lOGOUTToolStripMenuItem.Click += new System.EventHandler(this.lOGOUTToolStripMenuItem_Click);
 			// 
+			// maintainUsersToolStripMenu
+			// 
+			this.maintainUsersToolStripMenu.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.maintainUsersToolStripMenu.Name = "maintainUsersToolStripMenu";
+			this.maintainUsersToolStripMenu.Padding = new System.Windows.Forms.Padding(5, 20, 5, 20);
+			this.maintainUsersToolStripMenu.Size = new System.Drawing.Size(220, 69);
+			this.maintainUsersToolStripMenu.Text = "Maintain Users";
+			this.maintainUsersToolStripMenu.Click += new System.EventHandler(this.maintainUsersToolStripMenu_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -122,7 +133,9 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.IsMdiContainer = true;
 			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "MainForm";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -139,5 +152,6 @@
 		private System.Windows.Forms.ToolStripMenuItem maintainAlbumsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem maintainGroupsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem lOGOUTToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem maintainUsersToolStripMenu;
 	}
 }

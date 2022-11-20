@@ -3,6 +3,7 @@ using SongSystem.Forms.Genre;
 using SongSystem.Forms.Group;
 using SongSystem.Forms.Singer;
 using SongSystem.Forms.Song;
+using SongSystem.Forms.User;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,9 +58,24 @@ namespace SongSystem
 			frm.Show();
 		}
 
+		private void maintainUsersToolStripMenu_Click(object sender, EventArgs e)
+		{
+			UsersForm frm = new UsersForm();
+			frm.MdiParent = this;
+			frm.Show();
+		}
+
 		private void lOGOUTToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			this.Close();
+			if (MessageBox.Show("Do you want to leave?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				this.Close();
+			}
+		}
+
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			this.Owner.Show();
 		}
 	}
 }
