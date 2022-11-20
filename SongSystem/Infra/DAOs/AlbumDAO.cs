@@ -112,15 +112,14 @@ namespace SongSystem.Infra.DAOs
 		public AlbumVM AlbumExists(AlbumDTO model)
 		{
 			var parameterbuilder = new SqlParameterBuilder();
-			string sql = "Select * from Groups where AlbumName = @GroupName";
+			string sql = "Select * from Albums where AlbumName = @AlbumName";
 
 			if (model.Id != 0)
 			{
 				sql += " and Id != @Id";
 				parameterbuilder = parameterbuilder.AddInt("Id", model.Id);
 			}
-			var parameters = parameterbuilder.AddNVarChar("AlbumName", 50, model.AlbumName)
-			.Build();
+			var parameters = parameterbuilder.AddNVarChar("AlbumName", 50, model.AlbumName).Build();
 
 			var dt = new SqlDBHelper("default").Select(sql, parameters);
 			if (dt.Rows.Count == 0) return null;

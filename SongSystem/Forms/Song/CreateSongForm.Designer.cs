@@ -51,7 +51,7 @@
 			this.lblComposer = new System.Windows.Forms.Label();
 			this.lblGenreName = new System.Windows.Forms.Label();
 			this.lblGroupName = new System.Windows.Forms.Label();
-			this.lblSingerId = new System.Windows.Forms.Label();
+			this.lblSingerList = new System.Windows.Forms.Label();
 			this.txtArranger = new System.Windows.Forms.TextBox();
 			this.txtRecordCompany = new System.Windows.Forms.TextBox();
 			this.txtProducer = new System.Windows.Forms.TextBox();
@@ -66,15 +66,28 @@
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.lblLyric = new System.Windows.Forms.Label();
 			this.txtLyric = new System.Windows.Forms.TextBox();
+			this.lblSingerName = new System.Windows.Forms.Label();
+			this.txtSingerName = new System.Windows.Forms.TextBox();
+			this.btnEnterSinger = new System.Windows.Forms.Button();
+			this.btnRefresh = new System.Windows.Forms.Button();
+			this.singerIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.groupIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.genreIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.albumIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.singerIndexVMBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.groupIndexVMBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.genreIndexVMBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.albumIndexVMBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// cmbAlbumName
 			// 
+			this.cmbAlbumName.DataSource = this.albumIndexVMBindingSource;
 			this.cmbAlbumName.DisplayMember = "AlbumName";
 			this.cmbAlbumName.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmbAlbumName.FormattingEnabled = true;
-			this.cmbAlbumName.Location = new System.Drawing.Point(650, 162);
+			this.cmbAlbumName.Location = new System.Drawing.Point(652, 205);
 			this.cmbAlbumName.Name = "cmbAlbumName";
 			this.cmbAlbumName.Size = new System.Drawing.Size(208, 34);
 			this.cmbAlbumName.TabIndex = 56;
@@ -82,10 +95,11 @@
 			// 
 			// cmbGenreName
 			// 
+			this.cmbGenreName.DataSource = this.genreIndexVMBindingSource;
 			this.cmbGenreName.DisplayMember = "GenreName";
 			this.cmbGenreName.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmbGenreName.FormattingEnabled = true;
-			this.cmbGenreName.Location = new System.Drawing.Point(223, 162);
+			this.cmbGenreName.Location = new System.Drawing.Point(225, 205);
 			this.cmbGenreName.Name = "cmbGenreName";
 			this.cmbGenreName.Size = new System.Drawing.Size(208, 34);
 			this.cmbGenreName.TabIndex = 55;
@@ -93,10 +107,11 @@
 			// 
 			// cmbGroupName
 			// 
+			this.cmbGroupName.DataSource = this.groupIndexVMBindingSource;
 			this.cmbGroupName.DisplayMember = "GroupName";
 			this.cmbGroupName.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmbGroupName.FormattingEnabled = true;
-			this.cmbGroupName.Location = new System.Drawing.Point(652, 95);
+			this.cmbGroupName.Location = new System.Drawing.Point(225, 89);
 			this.cmbGroupName.Name = "cmbGroupName";
 			this.cmbGroupName.Size = new System.Drawing.Size(208, 34);
 			this.cmbGroupName.TabIndex = 54;
@@ -104,10 +119,11 @@
 			// 
 			// cmbSingerName
 			// 
+			this.cmbSingerName.DataSource = this.singerIndexVMBindingSource;
 			this.cmbSingerName.DisplayMember = "SingerName";
 			this.cmbSingerName.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmbSingerName.FormattingEnabled = true;
-			this.cmbSingerName.Location = new System.Drawing.Point(223, 95);
+			this.cmbSingerName.Location = new System.Drawing.Point(652, 33);
 			this.cmbSingerName.Name = "cmbSingerName";
 			this.cmbSingerName.Size = new System.Drawing.Size(208, 34);
 			this.cmbSingerName.TabIndex = 53;
@@ -116,7 +132,7 @@
 			// dtpReleased
 			// 
 			this.dtpReleased.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dtpReleased.Location = new System.Drawing.Point(223, 229);
+			this.dtpReleased.Location = new System.Drawing.Point(225, 259);
 			this.dtpReleased.Name = "dtpReleased";
 			this.dtpReleased.Size = new System.Drawing.Size(208, 32);
 			this.dtpReleased.TabIndex = 52;
@@ -125,7 +141,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(740, 37);
+			this.label1.Location = new System.Drawing.Point(739, 265);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(21, 26);
 			this.label1.TabIndex = 51;
@@ -136,49 +152,53 @@
 			this.btnAddAlbum.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddAlbum.BackgroundImage")));
 			this.btnAddAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.btnAddAlbum.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAddAlbum.Location = new System.Drawing.Point(877, 166);
+			this.btnAddAlbum.Location = new System.Drawing.Point(879, 209);
 			this.btnAddAlbum.Name = "btnAddAlbum";
 			this.btnAddAlbum.Size = new System.Drawing.Size(25, 25);
 			this.btnAddAlbum.TabIndex = 38;
 			this.btnAddAlbum.UseVisualStyleBackColor = true;
+			this.btnAddAlbum.Click += new System.EventHandler(this.btnAddAlbum_Click);
 			// 
 			// btnAddGenre
 			// 
 			this.btnAddGenre.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddGenre.BackgroundImage")));
 			this.btnAddGenre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.btnAddGenre.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAddGenre.Location = new System.Drawing.Point(448, 166);
+			this.btnAddGenre.Location = new System.Drawing.Point(450, 209);
 			this.btnAddGenre.Name = "btnAddGenre";
 			this.btnAddGenre.Size = new System.Drawing.Size(25, 25);
 			this.btnAddGenre.TabIndex = 37;
 			this.btnAddGenre.UseVisualStyleBackColor = true;
+			this.btnAddGenre.Click += new System.EventHandler(this.btnAddGenre_Click);
 			// 
 			// btnAddGroup
 			// 
 			this.btnAddGroup.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddGroup.BackgroundImage")));
 			this.btnAddGroup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.btnAddGroup.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAddGroup.Location = new System.Drawing.Point(877, 99);
+			this.btnAddGroup.Location = new System.Drawing.Point(450, 93);
 			this.btnAddGroup.Name = "btnAddGroup";
 			this.btnAddGroup.Size = new System.Drawing.Size(25, 25);
 			this.btnAddGroup.TabIndex = 36;
 			this.btnAddGroup.UseVisualStyleBackColor = true;
+			this.btnAddGroup.Click += new System.EventHandler(this.btnAddGroup_Click);
 			// 
 			// btnAddSinger
 			// 
 			this.btnAddSinger.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddSinger.BackgroundImage")));
 			this.btnAddSinger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.btnAddSinger.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAddSinger.Location = new System.Drawing.Point(448, 99);
+			this.btnAddSinger.Location = new System.Drawing.Point(879, 93);
 			this.btnAddSinger.Name = "btnAddSinger";
 			this.btnAddSinger.Size = new System.Drawing.Size(25, 25);
 			this.btnAddSinger.TabIndex = 35;
 			this.btnAddSinger.UseVisualStyleBackColor = true;
+			this.btnAddSinger.Click += new System.EventHandler(this.btnAddSinger_Click);
 			// 
 			// btnSave
 			// 
 			this.btnSave.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSave.Location = new System.Drawing.Point(632, 457);
+			this.btnSave.Location = new System.Drawing.Point(636, 439);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(102, 38);
 			this.btnSave.TabIndex = 34;
@@ -190,7 +210,7 @@
 			// 
 			this.lblReleased.AutoSize = true;
 			this.lblReleased.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblReleased.Location = new System.Drawing.Point(102, 235);
+			this.lblReleased.Location = new System.Drawing.Point(104, 265);
 			this.lblReleased.Name = "lblReleased";
 			this.lblReleased.Size = new System.Drawing.Size(111, 26);
 			this.lblReleased.TabIndex = 39;
@@ -200,7 +220,7 @@
 			// 
 			this.lblLength.AutoSize = true;
 			this.lblLength.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblLength.Location = new System.Drawing.Point(552, 36);
+			this.lblLength.Location = new System.Drawing.Point(551, 264);
 			this.lblLength.Name = "lblLength";
 			this.lblLength.Size = new System.Drawing.Size(90, 26);
 			this.lblLength.TabIndex = 40;
@@ -210,7 +230,7 @@
 			// 
 			this.lblLanguage.AutoSize = true;
 			this.lblLanguage.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblLanguage.Location = new System.Drawing.Point(526, 235);
+			this.lblLanguage.Location = new System.Drawing.Point(101, 150);
 			this.lblLanguage.Name = "lblLanguage";
 			this.lblLanguage.Size = new System.Drawing.Size(118, 26);
 			this.lblLanguage.TabIndex = 41;
@@ -220,7 +240,7 @@
 			// 
 			this.lblArranger.AutoSize = true;
 			this.lblArranger.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblArranger.Location = new System.Drawing.Point(531, 308);
+			this.lblArranger.Location = new System.Drawing.Point(533, 322);
 			this.lblArranger.Name = "lblArranger";
 			this.lblArranger.Size = new System.Drawing.Size(111, 26);
 			this.lblArranger.TabIndex = 48;
@@ -230,7 +250,7 @@
 			// 
 			this.lblAlbumName.AutoSize = true;
 			this.lblAlbumName.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblAlbumName.Location = new System.Drawing.Point(492, 165);
+			this.lblAlbumName.Location = new System.Drawing.Point(494, 208);
 			this.lblAlbumName.Name = "lblAlbumName";
 			this.lblAlbumName.Size = new System.Drawing.Size(150, 26);
 			this.lblAlbumName.TabIndex = 45;
@@ -240,7 +260,7 @@
 			// 
 			this.lblRecordCompany.AutoSize = true;
 			this.lblRecordCompany.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRecordCompany.Location = new System.Drawing.Point(24, 457);
+			this.lblRecordCompany.Location = new System.Drawing.Point(26, 442);
 			this.lblRecordCompany.Name = "lblRecordCompany";
 			this.lblRecordCompany.Size = new System.Drawing.Size(191, 26);
 			this.lblRecordCompany.TabIndex = 47;
@@ -250,7 +270,7 @@
 			// 
 			this.lblProducer.AutoSize = true;
 			this.lblProducer.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblProducer.Location = new System.Drawing.Point(102, 380);
+			this.lblProducer.Location = new System.Drawing.Point(104, 380);
 			this.lblProducer.Name = "lblProducer";
 			this.lblProducer.Size = new System.Drawing.Size(110, 26);
 			this.lblProducer.TabIndex = 46;
@@ -260,7 +280,7 @@
 			// 
 			this.lblComposer.AutoSize = true;
 			this.lblComposer.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblComposer.Location = new System.Drawing.Point(92, 308);
+			this.lblComposer.Location = new System.Drawing.Point(94, 322);
 			this.lblComposer.Name = "lblComposer";
 			this.lblComposer.Size = new System.Drawing.Size(121, 26);
 			this.lblComposer.TabIndex = 49;
@@ -270,7 +290,7 @@
 			// 
 			this.lblGenreName.AutoSize = true;
 			this.lblGenreName.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblGenreName.Location = new System.Drawing.Point(65, 165);
+			this.lblGenreName.Location = new System.Drawing.Point(67, 208);
 			this.lblGenreName.Name = "lblGenreName";
 			this.lblGenreName.Size = new System.Drawing.Size(148, 26);
 			this.lblGenreName.TabIndex = 44;
@@ -280,26 +300,26 @@
 			// 
 			this.lblGroupName.AutoSize = true;
 			this.lblGroupName.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblGroupName.Location = new System.Drawing.Point(494, 98);
+			this.lblGroupName.Location = new System.Drawing.Point(67, 92);
 			this.lblGroupName.Name = "lblGroupName";
 			this.lblGroupName.Size = new System.Drawing.Size(148, 26);
 			this.lblGroupName.TabIndex = 43;
 			this.lblGroupName.Text = "Group Name:";
 			// 
-			// lblSingerId
+			// lblSingerList
 			// 
-			this.lblSingerId.AutoSize = true;
-			this.lblSingerId.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblSingerId.Location = new System.Drawing.Point(60, 98);
-			this.lblSingerId.Name = "lblSingerId";
-			this.lblSingerId.Size = new System.Drawing.Size(152, 26);
-			this.lblSingerId.TabIndex = 42;
-			this.lblSingerId.Text = "Singer Name:";
+			this.lblSingerList.AutoSize = true;
+			this.lblSingerList.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblSingerList.Location = new System.Drawing.Point(512, 36);
+			this.lblSingerList.Name = "lblSingerList";
+			this.lblSingerList.Size = new System.Drawing.Size(129, 26);
+			this.lblSingerList.TabIndex = 42;
+			this.lblSingerList.Text = "Singer List:";
 			// 
 			// txtArranger
 			// 
 			this.txtArranger.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtArranger.Location = new System.Drawing.Point(650, 305);
+			this.txtArranger.Location = new System.Drawing.Point(652, 319);
 			this.txtArranger.Name = "txtArranger";
 			this.txtArranger.Size = new System.Drawing.Size(208, 32);
 			this.txtArranger.TabIndex = 30;
@@ -307,7 +327,7 @@
 			// txtRecordCompany
 			// 
 			this.txtRecordCompany.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtRecordCompany.Location = new System.Drawing.Point(223, 457);
+			this.txtRecordCompany.Location = new System.Drawing.Point(225, 442);
 			this.txtRecordCompany.Name = "txtRecordCompany";
 			this.txtRecordCompany.Size = new System.Drawing.Size(208, 32);
 			this.txtRecordCompany.TabIndex = 29;
@@ -315,7 +335,7 @@
 			// txtProducer
 			// 
 			this.txtProducer.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtProducer.Location = new System.Drawing.Point(223, 380);
+			this.txtProducer.Location = new System.Drawing.Point(225, 380);
 			this.txtProducer.Name = "txtProducer";
 			this.txtProducer.Size = new System.Drawing.Size(208, 32);
 			this.txtProducer.TabIndex = 28;
@@ -323,7 +343,7 @@
 			// txtComposer
 			// 
 			this.txtComposer.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtComposer.Location = new System.Drawing.Point(223, 308);
+			this.txtComposer.Location = new System.Drawing.Point(225, 322);
 			this.txtComposer.Name = "txtComposer";
 			this.txtComposer.Size = new System.Drawing.Size(208, 32);
 			this.txtComposer.TabIndex = 27;
@@ -341,7 +361,7 @@
 			// txtMinute
 			// 
 			this.txtMinute.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtMinute.Location = new System.Drawing.Point(692, 34);
+			this.txtMinute.Location = new System.Drawing.Point(691, 262);
 			this.txtMinute.Name = "txtMinute";
 			this.txtMinute.Size = new System.Drawing.Size(42, 32);
 			this.txtMinute.TabIndex = 32;
@@ -349,7 +369,7 @@
 			// txtSecond
 			// 
 			this.txtSecond.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtSecond.Location = new System.Drawing.Point(763, 33);
+			this.txtSecond.Location = new System.Drawing.Point(762, 261);
 			this.txtSecond.Name = "txtSecond";
 			this.txtSecond.Size = new System.Drawing.Size(42, 32);
 			this.txtSecond.TabIndex = 31;
@@ -357,7 +377,7 @@
 			// txtLanguage
 			// 
 			this.txtLanguage.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtLanguage.Location = new System.Drawing.Point(650, 232);
+			this.txtLanguage.Location = new System.Drawing.Point(225, 147);
 			this.txtLanguage.Name = "txtLanguage";
 			this.txtLanguage.Size = new System.Drawing.Size(208, 32);
 			this.txtLanguage.TabIndex = 33;
@@ -374,7 +394,7 @@
 			// 
 			this.lblLyricist.AutoSize = true;
 			this.lblLyricist.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblLyricist.Location = new System.Drawing.Point(549, 380);
+			this.lblLyricist.Location = new System.Drawing.Point(551, 380);
 			this.lblLyricist.Name = "lblLyricist";
 			this.lblLyricist.Size = new System.Drawing.Size(93, 26);
 			this.lblLyricist.TabIndex = 64;
@@ -383,7 +403,7 @@
 			// txtLyricist
 			// 
 			this.txtLyricist.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtLyricist.Location = new System.Drawing.Point(650, 377);
+			this.txtLyricist.Location = new System.Drawing.Point(652, 377);
 			this.txtLyricist.Name = "txtLyricist";
 			this.txtLyricist.Size = new System.Drawing.Size(208, 32);
 			this.txtLyricist.TabIndex = 63;
@@ -412,6 +432,66 @@
 			this.txtLyric.Size = new System.Drawing.Size(417, 418);
 			this.txtLyric.TabIndex = 65;
 			// 
+			// lblSingerName
+			// 
+			this.lblSingerName.AutoSize = true;
+			this.lblSingerName.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblSingerName.Location = new System.Drawing.Point(489, 92);
+			this.lblSingerName.Name = "lblSingerName";
+			this.lblSingerName.Size = new System.Drawing.Size(152, 26);
+			this.lblSingerName.TabIndex = 42;
+			this.lblSingerName.Text = "Singer Name:";
+			// 
+			// txtSingerName
+			// 
+			this.txtSingerName.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtSingerName.Location = new System.Drawing.Point(652, 89);
+			this.txtSingerName.Multiline = true;
+			this.txtSingerName.Name = "txtSingerName";
+			this.txtSingerName.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.txtSingerName.Size = new System.Drawing.Size(221, 90);
+			this.txtSingerName.TabIndex = 33;
+			// 
+			// btnEnterSinger
+			// 
+			this.btnEnterSinger.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEnterSinger.BackgroundImage")));
+			this.btnEnterSinger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.btnEnterSinger.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnEnterSinger.Location = new System.Drawing.Point(875, 32);
+			this.btnEnterSinger.Name = "btnEnterSinger";
+			this.btnEnterSinger.Size = new System.Drawing.Size(35, 35);
+			this.btnEnterSinger.TabIndex = 35;
+			this.btnEnterSinger.UseVisualStyleBackColor = true;
+			this.btnEnterSinger.Click += new System.EventHandler(this.btnEnterSinger_Click);
+			// 
+			// btnRefresh
+			// 
+			this.btnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.BackgroundImage")));
+			this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.btnRefresh.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnRefresh.Location = new System.Drawing.Point(879, 150);
+			this.btnRefresh.Name = "btnRefresh";
+			this.btnRefresh.Size = new System.Drawing.Size(31, 31);
+			this.btnRefresh.TabIndex = 35;
+			this.btnRefresh.UseVisualStyleBackColor = true;
+			this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+			// 
+			// singerIndexVMBindingSource
+			// 
+			this.singerIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.SingerIndexVM);
+			// 
+			// groupIndexVMBindingSource
+			// 
+			this.groupIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.GroupIndexVM);
+			// 
+			// genreIndexVMBindingSource
+			// 
+			this.genreIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.GenreIndexVM);
+			// 
+			// albumIndexVMBindingSource
+			// 
+			this.albumIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.AlbumIndexVM);
+			// 
 			// CreateSongForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -430,6 +510,8 @@
 			this.Controls.Add(this.btnAddAlbum);
 			this.Controls.Add(this.btnAddGenre);
 			this.Controls.Add(this.btnAddGroup);
+			this.Controls.Add(this.btnRefresh);
+			this.Controls.Add(this.btnEnterSinger);
 			this.Controls.Add(this.btnAddSinger);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.lblReleased);
@@ -442,7 +524,8 @@
 			this.Controls.Add(this.lblComposer);
 			this.Controls.Add(this.lblGenreName);
 			this.Controls.Add(this.lblGroupName);
-			this.Controls.Add(this.lblSingerId);
+			this.Controls.Add(this.lblSingerName);
+			this.Controls.Add(this.lblSingerList);
 			this.Controls.Add(this.txtArranger);
 			this.Controls.Add(this.txtRecordCompany);
 			this.Controls.Add(this.txtProducer);
@@ -450,11 +533,17 @@
 			this.Controls.Add(this.lblSongName);
 			this.Controls.Add(this.txtMinute);
 			this.Controls.Add(this.txtSecond);
+			this.Controls.Add(this.txtSingerName);
 			this.Controls.Add(this.txtLanguage);
 			this.Controls.Add(this.txtSongName);
 			this.Name = "CreateSongForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "CreateSongForm";
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.singerIndexVMBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.groupIndexVMBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.genreIndexVMBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.albumIndexVMBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -483,7 +572,7 @@
 		private System.Windows.Forms.Label lblComposer;
 		private System.Windows.Forms.Label lblGenreName;
 		private System.Windows.Forms.Label lblGroupName;
-		private System.Windows.Forms.Label lblSingerId;
+		private System.Windows.Forms.Label lblSingerList;
 		private System.Windows.Forms.TextBox txtArranger;
 		private System.Windows.Forms.TextBox txtRecordCompany;
 		private System.Windows.Forms.TextBox txtProducer;
@@ -498,5 +587,13 @@
 		private System.Windows.Forms.ErrorProvider errorProvider1;
 		private System.Windows.Forms.Label lblLyric;
 		private System.Windows.Forms.TextBox txtLyric;
+		private System.Windows.Forms.Label lblSingerName;
+		private System.Windows.Forms.Button btnEnterSinger;
+		private System.Windows.Forms.TextBox txtSingerName;
+		private System.Windows.Forms.Button btnRefresh;
+		private System.Windows.Forms.BindingSource albumIndexVMBindingSource;
+		private System.Windows.Forms.BindingSource genreIndexVMBindingSource;
+		private System.Windows.Forms.BindingSource groupIndexVMBindingSource;
+		private System.Windows.Forms.BindingSource singerIndexVMBindingSource;
 	}
 }

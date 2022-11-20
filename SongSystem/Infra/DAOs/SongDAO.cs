@@ -97,8 +97,13 @@ namespace SongSystem.Infra.DAOs
 
 		public SongVM SongExists(SongDTO model)
 		{
-			string sql = "select * from songs where SongName = @SongName";
-			var parametersbuilder = new SqlParameterBuilder().AddNVarChar("SongName", 50, model.SongName);
+			string sql = "select * from songs where SongName = @SongName and Length = @Length and GenreId = @GenreId and Language = @Language and Released = @Released";
+			var parametersbuilder = new SqlParameterBuilder()
+										.AddNVarChar("SongName", 50, model.SongName)
+										.AddTime("Length", model.Length)
+										.AddInt("GenreId", model.GenreId)
+										.AddNVarChar("Language", 50, model.Language)
+										.AddDate("Released", model.Released);
 
 			if(model.SongId> 0)
 			{

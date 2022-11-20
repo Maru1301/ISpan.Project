@@ -67,7 +67,7 @@ namespace SongSystem.Models.Services
 
 			var returnModel =  new GenreDAO().GenreExists(dto);
 
-			return returnModel == null;
+			return returnModel != null;
 		}
 	}
 }

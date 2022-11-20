@@ -33,7 +33,7 @@ namespace SongSystem.Forms.Song
 
 		private void EditSongForm_Load(object sender, EventArgs e)
 		{
-			song = new SongDetailService().Get(songId, singerId);
+			song = new SongDetailService().Get(songId);
 			if (song == null)
 			{
 				MessageBox.Show("No Data Found!");

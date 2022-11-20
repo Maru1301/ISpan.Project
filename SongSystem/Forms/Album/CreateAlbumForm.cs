@@ -39,9 +39,16 @@ namespace SongSystem.Forms.Album
 			bool isValid = ValidationHelper.Validate(model, map, errorProvider1);
 			if (!isValid) return;
 
-			new AlbumService().Create(model);
+			try
+			{
+				new AlbumService().Create(model);
 
-			this.DialogResult = DialogResult.OK;
+				this.DialogResult = DialogResult.OK;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Creation failed! Because " + ex.Message);
+			}
 		}
 	}
 }

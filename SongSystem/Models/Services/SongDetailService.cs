@@ -18,9 +18,9 @@ namespace SongSystem.Models.Services
 			return new SongDetailDAO().GetAll();
 		}
 
-		public SongValidationVM Get(int songId, int singerId)
+		public SongValidationVM Get(int songId)
 		{
-			return new SongDetailDAO().Get(songId, singerId);
+			return new SongDetailDAO().Get(songId);
 		}
 
 		public IEnumerable<SongIndexVM> GetByLength(TimeSpan lengthStart, TimeSpan lengthEnd)
@@ -72,11 +72,23 @@ namespace SongSystem.Models.Services
 		{
 			return new SongDetailDAO().GetByRecordCompany(recordCompany);
 		}
-		public void Create(SongDetailVM model)
+		public void Create(SongDetailVM model, Dictionary<int, string> singerList)
 		{
-			// check existence
-			var dto = ParseToSongDetailDTO(model);
-			new SongDetailDAO().Create(dto);
+			// check each singer in song detail
+			foreach(string singerName in singerList.Values)
+			{
+				model.SingerName = singerName;
+				// check existence
+				if (SongDetailExists(model) == true) throw new Exception("Song has existed");
+			}
+
+			foreach(int singerId in singerList.Keys)
+			{
+				model.SingerId = singerId;
+
+				var dto = ParseToSongDetailDTO(model);
+				new SongDetailDAO().Create(dto);
+			}
 		}
 
 		public void Update(SongDetailVM model)
@@ -89,6 +101,14 @@ namespace SongSystem.Models.Services
 		public void Delete(int songId, int singerId)
 		{
 			new SongDetailDAO().Delete(songId, singerId);
+		}
+
+		private bool SongDetailExists(SongDetailVM model)
+		{
+			var dto = ParseToSongDetailDTO(model);
+			var returnModel = new SongDetailDAO().SongDetailExists(dto);
+
+			return returnModel != null;
 		}
 
 		private SongDetailDTO ParseToSongDetailDTO(SongDetailVM model)

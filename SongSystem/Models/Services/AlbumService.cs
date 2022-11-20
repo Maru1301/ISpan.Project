@@ -30,7 +30,7 @@ namespace SongSystem.Models.Services
 
 		public void Create(AlbumVM model)
 		{
-			if (AlbumExists(model) == true) throw new Exception("Genre Name has existed");
+			if (AlbumExists(model) == true) throw new Exception("Album Name has existed");
 
 			var dto = ParseToAlbumDTO(model);
 
@@ -66,7 +66,7 @@ namespace SongSystem.Models.Services
 
 			var returnModel = new AlbumDAO().AlbumExists(dto);
 
-			return returnModel == null;
+			return returnModel != null;
 		}
 	}
 }
