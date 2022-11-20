@@ -13,6 +13,11 @@ namespace SongSystem.Models.Services
 {
 	public class UserService
 	{
+		public UserVM Get(string account)
+		{
+			return new UserDAO().Get(account);
+		}
+
 		public void Create(UserDTO dto)
 		{
 			//AccountValidation

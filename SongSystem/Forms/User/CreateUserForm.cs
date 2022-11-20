@@ -26,12 +26,14 @@ namespace SongSystem.Forms.User
 			string account = txtAccount.Text;
 			string password = txtPassword.Text;
 			string name = txtName.Text;
+			int permissions = txtPermissions.Text.ToInt(0);
 
 			UserVM model = new UserVM
 			{
 				Account = account,
 				Password = password,
 				Name = name,
+				Permissions = permissions
 			};
 
 			//欄位驗證
@@ -40,6 +42,7 @@ namespace SongSystem.Forms.User
 				{"Account", txtAccount },
 				{"Password", txtPassword },
 				{"Name", txtName},
+				{"Permissions", txtPermissions },
 			};
 			if (ValidationHelper.Validate(model, map, this.errorProvider1) == false) return;
 

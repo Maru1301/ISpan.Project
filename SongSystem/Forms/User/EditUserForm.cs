@@ -36,6 +36,7 @@ namespace SongSystem.Forms.User
 			txtAccount.Text = model.Account;
 			txtPassword.Text = model.Password;
 			txtName.Text = model.Name;
+			txtPermissions.Text = model.Permissions.ToString();
 		}
 
 		private UserVM ToUserVM(UserDTO dto)
@@ -46,6 +47,7 @@ namespace SongSystem.Forms.User
 				Account = dto.Account,
 				Password = dto.Password,
 				Name = dto.Name,
+				Permissions = dto.Permissions,
 			};
 		}
 
@@ -66,6 +68,7 @@ namespace SongSystem.Forms.User
 			string account = txtAccount.Text;
 			string password = txtPassword.Text;
 			string name = txtName.Text;
+			int permissions = Convert.ToInt32(txtPermissions.Text);
 
 			UserVM model = new UserVM
 			{
@@ -73,6 +76,7 @@ namespace SongSystem.Forms.User
 				Account = account,
 				Password = password,
 				Name = name,
+				Permissions = permissions
 			};
 
 			Dictionary<string, Control> map = new Dictionary<string, Control>(StringComparer.CurrentCultureIgnoreCase)
@@ -80,6 +84,7 @@ namespace SongSystem.Forms.User
 				{"Account", txtAccount },
 				{"Password", txtPassword },
 				{"Name", txtName},
+				{"Permissions", txtPermissions },
 			};
 			if (ValidationHelper.Validate(model, map, this.errorProvider1) == false) return;
 

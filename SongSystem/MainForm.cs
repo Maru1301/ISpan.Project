@@ -4,6 +4,9 @@ using SongSystem.Forms.Group;
 using SongSystem.Forms.Singer;
 using SongSystem.Forms.Song;
 using SongSystem.Forms.User;
+using SongSystem.Infra.DAOs;
+using SongSystem.Models.Services;
+using SongSystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +21,17 @@ namespace SongSystem
 {
 	public partial class MainForm : Form
 	{
-		public MainForm()
+		UserVM user;
+		public MainForm(string account)
 		{
 			InitializeComponent();
+
+			user = new UserService().Get(account);
+
+			if(user.Permissions < 3)
+			{
+				maintainUsersToolStripMenu.Visible = false;
+			}
 		}
 
 		private void maintainSongsToolStripMenuItem_Click(object sender, EventArgs e)

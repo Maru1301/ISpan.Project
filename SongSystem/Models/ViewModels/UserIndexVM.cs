@@ -14,22 +14,27 @@ namespace SongSystem.Models.ViewModels
 		public string Account { get; set; }
 		//public string Password { get; set; }
 		public string Name { get; set; }
+		public int Permissions { get; set; }
 	}
 
 	public class UserVM
 	{
 		public int Id { get; set; }
 
-		[Required(ErrorMessage = "Account is required")]
+		[Required(ErrorMessage = "{0} is required")]
 		[MaxLength(16, ErrorMessage = "The Account value cannot exceed 16 characters.")]
 		[MinLength(3, ErrorMessage = "The Account value cannot be less than 3 characters.")]
 		public string Account { get; set; }
 
-		[Required(ErrorMessage = "Password is required")]
+		[Required(ErrorMessage = "{0} is required")]
 		public string Password { get; set; }
 
-		[Required(ErrorMessage = "Name is required")]
+		[Required(ErrorMessage = "{0} is required")]
 		public string Name { get; set; }
+
+		[Required(ErrorMessage = "{0} is required")]
+		[RegularExpression(@"[1-5]", ErrorMessage = "Permissions value is from 1 to 5")]
+		public int Permissions { get; set; }
 	}
 
 	public static class UserVMExts
@@ -42,6 +47,7 @@ namespace SongSystem.Models.ViewModels
 				Account = model.Account,
 				Password = model.Password,
 				Name = model.Name,
+				Permissions= model.Permissions,
 			};
 		}
 	}

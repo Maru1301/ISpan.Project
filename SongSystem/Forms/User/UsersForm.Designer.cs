@@ -30,11 +30,12 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.btnAdd = new System.Windows.Forms.Button();
+			this.userIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.userIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.btnAdd = new System.Windows.Forms.Button();
+			this.Permissions = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.userIndexVMBindingSource)).BeginInit();
 			this.SuspendLayout();
@@ -51,16 +52,33 @@
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.accountDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn});
+            this.nameDataGridViewTextBoxColumn,
+            this.Permissions});
 			this.dataGridView1.DataSource = this.userIndexVMBindingSource;
 			this.dataGridView1.Location = new System.Drawing.Point(28, 70);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
 			this.dataGridView1.RowHeadersWidth = 51;
 			this.dataGridView1.RowTemplate.Height = 27;
-			this.dataGridView1.Size = new System.Drawing.Size(431, 341);
+			this.dataGridView1.Size = new System.Drawing.Size(558, 341);
 			this.dataGridView1.TabIndex = 9;
 			this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+			// 
+			// btnAdd
+			// 
+			this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnAdd.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			this.btnAdd.Location = new System.Drawing.Point(485, 21);
+			this.btnAdd.Name = "btnAdd";
+			this.btnAdd.Size = new System.Drawing.Size(101, 33);
+			this.btnAdd.TabIndex = 8;
+			this.btnAdd.Text = "Add";
+			this.btnAdd.UseVisualStyleBackColor = true;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+			// 
+			// userIndexVMBindingSource
+			// 
+			this.userIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.UserIndexVM);
 			// 
 			// idDataGridViewTextBoxColumn
 			// 
@@ -89,27 +107,20 @@
 			this.nameDataGridViewTextBoxColumn.ReadOnly = true;
 			this.nameDataGridViewTextBoxColumn.Width = 125;
 			// 
-			// userIndexVMBindingSource
+			// Permissions
 			// 
-			this.userIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.UserIndexVM);
-			// 
-			// btnAdd
-			// 
-			this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnAdd.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.btnAdd.Location = new System.Drawing.Point(358, 21);
-			this.btnAdd.Name = "btnAdd";
-			this.btnAdd.Size = new System.Drawing.Size(101, 33);
-			this.btnAdd.TabIndex = 8;
-			this.btnAdd.Text = "Add";
-			this.btnAdd.UseVisualStyleBackColor = true;
-			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+			this.Permissions.DataPropertyName = "Permissions";
+			this.Permissions.HeaderText = "Permissions";
+			this.Permissions.MinimumWidth = 6;
+			this.Permissions.Name = "Permissions";
+			this.Permissions.ReadOnly = true;
+			this.Permissions.Width = 125;
 			// 
 			// UsersForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(486, 431);
+			this.ClientSize = new System.Drawing.Size(613, 431);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.btnAdd);
 			this.Name = "UsersForm";
@@ -124,9 +135,10 @@
 
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.Button btnAdd;
+		private System.Windows.Forms.BindingSource userIndexVMBindingSource;
 		private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-		private System.Windows.Forms.BindingSource userIndexVMBindingSource;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Permissions;
 	}
 }

@@ -15,5 +15,7 @@ namespace SongSystem.Models.DTOs
 		public string Password { get; set; }
 
 		public string Name { get; set; }
+
+		public int Permissions { get; set; }
 	}
 }

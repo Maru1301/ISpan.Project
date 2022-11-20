@@ -37,13 +37,15 @@
 			this.lblAccount = new System.Windows.Forms.Label();
 			this.lblPassword = new System.Windows.Forms.Label();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+			this.txtPermissions = new System.Windows.Forms.TextBox();
+			this.lblPermissions = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// btnSave
 			// 
 			this.btnSave.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.btnSave.Location = new System.Drawing.Point(206, 183);
+			this.btnSave.Location = new System.Drawing.Point(154, 242);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(105, 44);
 			this.btnSave.TabIndex = 11;
@@ -54,7 +56,7 @@
 			// txtName
 			// 
 			this.txtName.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.txtName.Location = new System.Drawing.Point(154, 132);
+			this.txtName.Location = new System.Drawing.Point(169, 136);
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(157, 34);
 			this.txtName.TabIndex = 10;
@@ -63,7 +65,7 @@
 			// 
 			this.lblName.AutoSize = true;
 			this.lblName.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.lblName.Location = new System.Drawing.Point(74, 135);
+			this.lblName.Location = new System.Drawing.Point(89, 139);
 			this.lblName.Name = "lblName";
 			this.lblName.Size = new System.Drawing.Size(74, 25);
 			this.lblName.TabIndex = 12;
@@ -72,7 +74,7 @@
 			// txtAccount
 			// 
 			this.txtAccount.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.txtAccount.Location = new System.Drawing.Point(154, 40);
+			this.txtAccount.Location = new System.Drawing.Point(169, 29);
 			this.txtAccount.Name = "txtAccount";
 			this.txtAccount.Size = new System.Drawing.Size(157, 34);
 			this.txtAccount.TabIndex = 8;
@@ -80,7 +82,7 @@
 			// txtPassword
 			// 
 			this.txtPassword.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.txtPassword.Location = new System.Drawing.Point(154, 85);
+			this.txtPassword.Location = new System.Drawing.Point(169, 83);
 			this.txtPassword.Name = "txtPassword";
 			this.txtPassword.Size = new System.Drawing.Size(157, 34);
 			this.txtPassword.TabIndex = 9;
@@ -89,7 +91,7 @@
 			// 
 			this.lblAccount.AutoSize = true;
 			this.lblAccount.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.lblAccount.Location = new System.Drawing.Point(53, 43);
+			this.lblAccount.Location = new System.Drawing.Point(68, 32);
 			this.lblAccount.Name = "lblAccount";
 			this.lblAccount.Size = new System.Drawing.Size(95, 25);
 			this.lblAccount.TabIndex = 13;
@@ -99,7 +101,7 @@
 			// 
 			this.lblPassword.AutoSize = true;
 			this.lblPassword.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.lblPassword.Location = new System.Drawing.Point(41, 88);
+			this.lblPassword.Location = new System.Drawing.Point(56, 86);
 			this.lblPassword.Name = "lblPassword";
 			this.lblPassword.Size = new System.Drawing.Size(107, 25);
 			this.lblPassword.TabIndex = 14;
@@ -109,11 +111,31 @@
 			// 
 			this.errorProvider1.ContainerControl = this;
 			// 
+			// txtPermissions
+			// 
+			this.txtPermissions.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			this.txtPermissions.Location = new System.Drawing.Point(169, 185);
+			this.txtPermissions.Name = "txtPermissions";
+			this.txtPermissions.Size = new System.Drawing.Size(157, 34);
+			this.txtPermissions.TabIndex = 15;
+			// 
+			// lblPermissions
+			// 
+			this.lblPermissions.AutoSize = true;
+			this.lblPermissions.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			this.lblPermissions.Location = new System.Drawing.Point(35, 188);
+			this.lblPermissions.Name = "lblPermissions";
+			this.lblPermissions.Size = new System.Drawing.Size(128, 25);
+			this.lblPermissions.TabIndex = 16;
+			this.lblPermissions.Text = "Permissions:";
+			// 
 			// CreateUserForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(400, 275);
+			this.ClientSize = new System.Drawing.Size(400, 298);
+			this.Controls.Add(this.txtPermissions);
+			this.Controls.Add(this.lblPermissions);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.txtName);
 			this.Controls.Add(this.lblName);
@@ -139,5 +161,7 @@
 		private System.Windows.Forms.Label lblAccount;
 		private System.Windows.Forms.Label lblPassword;
 		private System.Windows.Forms.ErrorProvider errorProvider1;
+		private System.Windows.Forms.TextBox txtPermissions;
+		private System.Windows.Forms.Label lblPermissions;
 	}
 }

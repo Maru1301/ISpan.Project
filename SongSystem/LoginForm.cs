@@ -45,7 +45,7 @@ namespace SongSystem
 			txtAccount.Text = string.Empty;
 			txtPassword.Text = string.Empty;
 
-			MainForm frm = new MainForm();
+			MainForm frm = new MainForm(model.Account);
 			frm.Show();
 			frm.Owner = this;
 			this.Hide();
