@@ -102,9 +102,40 @@ namespace SongSystem.Forms.Song
 			}
 			else
 			{
-				if(cmbSearch.Text.Length == 0)
+				string value = cmbSearch.Text;
+				if (value.Length == 0 || cmbCategory.Text == "")
 				{
 					songs = new SongDetailService().GetAll().ToArray();
+					DataBind(songs);
+					return;
+				}
+				else
+				{
+					value = "%" + value + "%";
+				}
+				if(cmbCategory.Text == "Singer")
+				{
+					songs = new SongDetailService().GetBySinger(value).ToArray();
+				}
+				else if (cmbCategory.Text == "Group")
+				{
+					songs = new SongDetailService().GetByGroup(value).ToArray();
+				}
+				else if (cmbCategory.Text == "Song Genre")
+				{
+					songs = new SongDetailService().GetByGenre(value).ToArray();
+				}
+				else if (cmbCategory.Text == "Album")
+				{
+					songs = new SongDetailService().GetByAlbum(value).ToArray();
+				}
+				else if (cmbCategory.Text == "Langauge")
+				{
+					songs = new SongDetailService().GetByLangauge(value).ToArray();
+				}
+				else if (cmbCategory.Text == "Record Company")
+				{
+					songs = new SongDetailService().GetByRecordCompany(value).ToArray();
 				}
 			}
 
@@ -199,6 +230,7 @@ namespace SongSystem.Forms.Song
 			else if (cmbCategory.Text == "Langauge")
 			{
 				cmbSearch.Show();
+				cmbSearch.DataSource = null;
 				HideLengthPicker();
 				releasedDate.Hide();
 				btnSearch.Location = new Point(483, btnSearch.Location.Y);
@@ -206,6 +238,7 @@ namespace SongSystem.Forms.Song
 			else if (cmbCategory.Text == "Record Company")
 			{
 				cmbSearch.Show();
+				cmbSearch.DataSource = null;
 				HideLengthPicker();
 				releasedDate.Hide();
 				btnSearch.Location = new Point(483, btnSearch.Location.Y);

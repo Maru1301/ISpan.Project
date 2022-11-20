@@ -142,6 +142,7 @@ namespace SongSystem.Forms.Song
 			catch (Exception ex)
 			{
 				MessageBox.Show("Creation failed! Because " + ex.Message);
+				return;
 			}
 
 			int songId = new SongService().Get(songName).SongId;
@@ -172,6 +173,7 @@ namespace SongSystem.Forms.Song
 			catch (Exception ex)
 			{
 				MessageBox.Show("Creation failed! Because " + ex.Message);
+				return;
 			}
 		}
 	}

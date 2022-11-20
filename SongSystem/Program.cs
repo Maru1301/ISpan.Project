@@ -1,9 +1,4 @@
-﻿using SongSystem.Forms.Album;
-using SongSystem.Forms.Genre;
-using SongSystem.Forms.Group;
-using SongSystem.Forms.Singer;
-using SongSystem.Forms.Song;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,7 +16,7 @@ namespace SongSystem
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new SongsForm());
+			Application.Run(new MainForm());
 		}
 	}
 }

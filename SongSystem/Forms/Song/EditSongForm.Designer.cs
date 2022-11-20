@@ -466,6 +466,7 @@
 			this.Controls.Add(this.txtLanguage);
 			this.Controls.Add(this.txtSongName);
 			this.Name = "EditSongForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "EditSongForm";
 			this.Load += new System.EventHandler(this.EditSongForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

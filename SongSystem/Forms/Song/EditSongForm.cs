@@ -150,6 +150,7 @@ namespace SongSystem.Forms.Song
 
 			SongVM songModel = new SongVM
 			{
+				SongId = this.songId,
 				SongName = songName,
 				Length = length,
 				GenreId = genreId,
@@ -185,6 +186,7 @@ namespace SongSystem.Forms.Song
 			catch (Exception ex)
 			{
 				MessageBox.Show("Update failed! Because " + ex.Message);
+				return;
 			}
 
 			int songId = new SongService().Get(songName).SongId;
@@ -215,6 +217,7 @@ namespace SongSystem.Forms.Song
 			catch (Exception ex)
 			{
 				MessageBox.Show("Update failed! Because " + ex.Message);
+				return;
 			}
 		}
 

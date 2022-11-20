@@ -1,4 +1,6 @@
 ﻿using ISpan.SQL.Utility;
+using SongSystem.Infra.DAOs;
+using SongSystem.Models.DTOs;
 using SongSystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,117 +15,59 @@ namespace SongSystem.Models.Services
 	{
 		public IEnumerable<SongIndexVM> GetAll()
 		{
-			string sql = @"select * from Songs order by Id";
-
-			return new SqlDBHelper("default").Select(sql, null)
-							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row));
+			return new SongDAO().GetAll();
 		}
 
 		public SongVM Get(int id)
 		{
-			string sql = @"select * from songs where Id = @Id";
-
-			var parameters = new SqlParameterBuilder().AddInt("Id", id).Build();
-
-			var dt = new SqlDBHelper("default").Select(sql, parameters);
-			if (dt.Rows.Count == 0) return null;
-			var dr = dt.Rows[0];
-
-			return ParseToSongVM(dr);
+			return new SongDAO().Get(id);
 		}
 
 		public SongVM Get(string songName)
 		{
-			string sql = @"select * from songs where SongName = @SongName";
-
-			var parameters = new SqlParameterBuilder().AddNVarChar("SongName", 50, songName).Build();
-
-			var dt = new SqlDBHelper("default").Select(sql, parameters);
-			if (dt.Rows.Count == 0) return null;
-			var dr = dt.Rows[0];
-
-			return ParseToSongVM(dr);
+			return new SongDAO().Get(songName);
 		}
 
 		public void Create(SongVM model)
 		{
-			string sql = @"insert into Songs(SongName, Length, GenreId, Language,Released)
-					values(@SongName, @Length, @GenreId, @Language, @Released)";
+			if (SongExists(model) == true) throw new Exception("Song has existed");
+			var dto = ParseToSongDTO(model);
 
-			var parameters = new SqlParameterBuilder()
-									.AddNVarChar("SongName", 50, model.SongName)
-									.AddTime("Length", model.Length)
-									.AddInt("GenreId", model.GenreId)
-									.AddDateTime("Released", model.Released)
-									.AddNVarChar("Language", 50, model.Language)
-									.Build();
-
-			new SqlDBHelper("default").ExecuteNonQuery(sql, parameters);
+			new SongDAO().Create(dto);
 		}
 
 		public void Update(SongVM model)
 		{
-			string sql = @"update songs 
-							set SongName = @SongName, 
-							Length = @Length, 
-							GenreId = @GenreId,
-							Language = @Language,
-							Released = @Released
-							where Id = @Id";
+			if (SongExists(model) == true) throw new Exception("Song has existed");
+			var dto = ParseToSongDTO(model);
 
-			var parameters = new SqlParameterBuilder()
-									.AddInt("Id", model.SongId)
-									.AddNVarChar("SongName", 50, model.SongName)
-									.AddTime("Length", model.Length)
-									.AddInt("GenreId", model.GenreId)
-									.AddNVarChar("Language", 50, model.Language)
-									.AddDateTime("Released", model.Released)
-									.Build();
-
-			new SqlDBHelper("default").ExecuteNonQuery(sql, parameters);
+			new SongDAO().Update(dto);
 		}
 
 		public void Delete(int id)
 		{
-			string sql = "delete from songs where Id = @Id";
-
-			var parameters = new SqlParameterBuilder().AddInt("Id", id).Build();
-
-			new SqlDBHelper("default").ExecuteNonQuery(sql, parameters);
+			new SongDAO().Delete(id);
 		}
 
-		private SongVM ParseToSongVM(DataRow dr)
+		private bool SongExists(SongVM model)
 		{
-			return new SongVM
-			{
-				SongId = dr.Field<int>("Id"),
-				SongName = dr.Field<string>("SongName"),
-				Length = dr.Field<TimeSpan>("Length"),
-				GenreId = dr.Field<int>("GenreId"),
-				Released = dr.Field<DateTime>("Released"),
-				Language = dr.Field<string>("Language"),
-			};
+			var dto = ParseToSongDTO(model);
+			var returnModel = new SongDAO().SongExists(dto);
+
+			return returnModel != null;
 		}
 
-		private SongIndexVM ToSongIndexVM(DataRow row)
+		private SongDTO ParseToSongDTO(SongVM model)
 		{
-			return new SongIndexVM
+			return new SongDTO
 			{
-				SongId = row.Field<int>("SongId"),
-				SongName = row.Field<string>("SongName"),
-				SingerName = row.Field<string>("SingerName"),
-				GroupName = row.Field<string>("GroupName"),
-				Length = row.Field<TimeSpan>("Length"),
-				GenreName = row.Field<string>("GenreName"),
-				AlbumName = row.Field<string>("AlbumName"),
-				Released = row.Field<DateTime>("Released"),
-				Language = row.Field<string>("Language"),
-				Composer = row.Field<string>("Composer"),
-				Arranger = row.Field<string>("Arranger"),
-				Producer = row.Field<string>("Producer"),
-				Lyricist = row.Field<string>("Lyricist"),
-				RecordCompany = row.Field<string>("RecordCompany"),
+				SongId = model.SongId,
+				SongName = model.SongName,
+				GenreId = model.GenreId,
+				GenreName = model.GenreName,
+				Language = model.Language,
+				Released = model.Released,
+				Length = model.Length,
 			};
 		}
 
