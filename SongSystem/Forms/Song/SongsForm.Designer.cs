@@ -49,6 +49,7 @@
 			this.lyricistDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.recordCompanyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.songIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.singerIndexVMBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.songIndexVMBindingSource)).BeginInit();
@@ -261,6 +262,10 @@
 			// 
 			this.songIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.SongIndexVM);
 			// 
+			// timer1
+			// 
+			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+			// 
 			// SongsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -272,7 +277,7 @@
 			this.Controls.Add(this.btnAdd);
 			this.Controls.Add(this.dataGridView1);
 			this.Name = "SongsForm";
-			this.Text = "SongsForm";
+			this.Text = "Song";
 			((System.ComponentModel.ISupportInitialize)(this.singerIndexVMBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.songIndexVMBindingSource)).EndInit();
@@ -302,5 +307,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn lyricistDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn recordCompanyDataGridViewTextBoxColumn;
 		private System.Windows.Forms.BindingSource singerIndexVMBindingSource;
+		private System.Windows.Forms.Timer timer1;
 	}
 }

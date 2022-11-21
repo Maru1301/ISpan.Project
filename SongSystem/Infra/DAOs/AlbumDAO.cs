@@ -14,7 +14,7 @@ namespace SongSystem.Infra.DAOs
 	{
 		public IEnumerable<AlbumIndexVM> GetAll()
 		{
-			string sql = "select * from Albums order by Released";
+			string sql = "select * from Albums order by Created_at";
 
 			return new SqlDBHelper("default").Select(sql, null)
 							.AsEnumerable()

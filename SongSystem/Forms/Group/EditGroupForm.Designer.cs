@@ -114,7 +114,8 @@
 			this.Controls.Add(this.lblGroupName);
 			this.Controls.Add(this.txtGroupName);
 			this.Name = "EditGroupForm";
-			this.Text = "EditGroupForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Edit Group";
 			this.Load += new System.EventHandler(this.EditGroupForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);

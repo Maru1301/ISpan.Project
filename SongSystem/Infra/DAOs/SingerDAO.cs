@@ -16,8 +16,7 @@ namespace SongSystem.Infra.DAOs
 		{
 			string sql = @"select S.Id, S.SingerName, S.DateOfBirth, S.Gender, S.Country, G.GroupName from Singers S
 							left join Groups G on S.GroupId = G.Id
-							order by S.Id"
-			;
+							order by S.Created_at";
 
 			return new SqlDBHelper("default").Select(sql, null)
 							.AsEnumerable()

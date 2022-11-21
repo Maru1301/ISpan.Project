@@ -30,10 +30,6 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.btnAddNew = new System.Windows.Forms.Button();
-			this.btnSearch = new System.Windows.Forms.Button();
-			this.txtSearchValue = new System.Windows.Forms.TextBox();
-			this.cbxCategory = new System.Windows.Forms.ComboBox();
 			this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.singerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,7 +37,12 @@
 			this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.singerIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.btnAddNew = new System.Windows.Forms.Button();
+			this.btnSearch = new System.Windows.Forms.Button();
+			this.txtSearchValue = new System.Windows.Forms.TextBox();
+			this.cbxCategory = new System.Windows.Forms.ComboBox();
 			this.dtpSearchValue = new System.Windows.Forms.DateTimePicker();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.singerIndexVMBindingSource)).BeginInit();
 			this.SuspendLayout();
@@ -68,51 +69,6 @@
 			this.dataGridView1.Size = new System.Drawing.Size(809, 258);
 			this.dataGridView1.TabIndex = 3;
 			this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-			// 
-			// btnAddNew
-			// 
-			this.btnAddNew.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAddNew.Location = new System.Drawing.Point(747, 19);
-			this.btnAddNew.Name = "btnAddNew";
-			this.btnAddNew.Size = new System.Drawing.Size(89, 34);
-			this.btnAddNew.TabIndex = 2;
-			this.btnAddNew.Text = "Add";
-			this.btnAddNew.UseVisualStyleBackColor = true;
-			this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
-			// 
-			// btnSearch
-			// 
-			this.btnSearch.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSearch.Location = new System.Drawing.Point(398, 20);
-			this.btnSearch.Name = "btnSearch";
-			this.btnSearch.Size = new System.Drawing.Size(93, 33);
-			this.btnSearch.TabIndex = 13;
-			this.btnSearch.Text = "Search";
-			this.btnSearch.UseVisualStyleBackColor = true;
-			this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-			// 
-			// txtSearchValue
-			// 
-			this.txtSearchValue.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtSearchValue.Location = new System.Drawing.Point(203, 20);
-			this.txtSearchValue.Name = "txtSearchValue";
-			this.txtSearchValue.Size = new System.Drawing.Size(189, 32);
-			this.txtSearchValue.TabIndex = 12;
-			// 
-			// cbxCategory
-			// 
-			this.cbxCategory.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cbxCategory.FormattingEnabled = true;
-			this.cbxCategory.Items.AddRange(new object[] {
-            "Singer name",
-            "Date of birth",
-            "Country",
-            "Group name"});
-			this.cbxCategory.Location = new System.Drawing.Point(27, 21);
-			this.cbxCategory.Name = "cbxCategory";
-			this.cbxCategory.Size = new System.Drawing.Size(158, 34);
-			this.cbxCategory.TabIndex = 14;
-			this.cbxCategory.SelectedIndexChanged += new System.EventHandler(this.cbxCategory_SelectedIndexChanged);
 			// 
 			// idDataGridViewTextBoxColumn
 			// 
@@ -172,6 +128,51 @@
 			// 
 			this.singerIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.SingerIndexVM);
 			// 
+			// btnAddNew
+			// 
+			this.btnAddNew.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnAddNew.Location = new System.Drawing.Point(747, 19);
+			this.btnAddNew.Name = "btnAddNew";
+			this.btnAddNew.Size = new System.Drawing.Size(89, 34);
+			this.btnAddNew.TabIndex = 2;
+			this.btnAddNew.Text = "Add";
+			this.btnAddNew.UseVisualStyleBackColor = true;
+			this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
+			// 
+			// btnSearch
+			// 
+			this.btnSearch.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnSearch.Location = new System.Drawing.Point(398, 20);
+			this.btnSearch.Name = "btnSearch";
+			this.btnSearch.Size = new System.Drawing.Size(93, 33);
+			this.btnSearch.TabIndex = 13;
+			this.btnSearch.Text = "Search";
+			this.btnSearch.UseVisualStyleBackColor = true;
+			this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+			// 
+			// txtSearchValue
+			// 
+			this.txtSearchValue.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtSearchValue.Location = new System.Drawing.Point(203, 20);
+			this.txtSearchValue.Name = "txtSearchValue";
+			this.txtSearchValue.Size = new System.Drawing.Size(189, 32);
+			this.txtSearchValue.TabIndex = 12;
+			// 
+			// cbxCategory
+			// 
+			this.cbxCategory.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.cbxCategory.FormattingEnabled = true;
+			this.cbxCategory.Items.AddRange(new object[] {
+            "Singer name",
+            "Date of birth",
+            "Country",
+            "Group name"});
+			this.cbxCategory.Location = new System.Drawing.Point(27, 21);
+			this.cbxCategory.Name = "cbxCategory";
+			this.cbxCategory.Size = new System.Drawing.Size(158, 34);
+			this.cbxCategory.TabIndex = 14;
+			this.cbxCategory.SelectedIndexChanged += new System.EventHandler(this.cbxCategory_SelectedIndexChanged);
+			// 
 			// dtpSearchValue
 			// 
 			this.dtpSearchValue.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -179,6 +180,10 @@
 			this.dtpSearchValue.Name = "dtpSearchValue";
 			this.dtpSearchValue.Size = new System.Drawing.Size(189, 32);
 			this.dtpSearchValue.TabIndex = 15;
+			// 
+			// timer1
+			// 
+			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
 			// SingersForm
 			// 
@@ -192,7 +197,7 @@
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.btnAddNew);
 			this.Name = "SingersForm";
-			this.Text = "SingersForm";
+			this.Text = "Singer";
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.singerIndexVMBindingSource)).EndInit();
 			this.ResumeLayout(false);
@@ -215,5 +220,6 @@
 		private System.Windows.Forms.TextBox txtSearchValue;
 		private System.Windows.Forms.ComboBox cbxCategory;
 		private System.Windows.Forms.DateTimePicker dtpSearchValue;
+		private System.Windows.Forms.Timer timer1;
 	}
 }

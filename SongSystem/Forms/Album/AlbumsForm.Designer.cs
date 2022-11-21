@@ -122,7 +122,7 @@
 			this.btnSearch.UseVisualStyleBackColor = true;
 			this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
 			// 
-			// AlbumForm
+			// AlbumsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -131,8 +131,8 @@
 			this.Controls.Add(this.txtAlbumName);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.btnAddNew);
-			this.Name = "AlbumForm";
-			this.Text = "AlbumForm";
+			this.Name = "AlbumsForm";
+			this.Text = "Album";
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.albumIndexVMBindingSource)).EndInit();
 			this.ResumeLayout(false);

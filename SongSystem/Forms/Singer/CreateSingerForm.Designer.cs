@@ -199,7 +199,8 @@
 			this.Controls.Add(this.txtSingerCountry);
 			this.Controls.Add(this.txtSingerName);
 			this.Name = "CreateSingerForm";
-			this.Text = "CreateSingerForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Add Singer";
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

@@ -132,6 +132,7 @@
     <Compile Include="Forms\Song\EditSongForm.Designer.cs">
       <DependentUpon>EditSongForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Song\ModelSet.cs" />
     <Compile Include="Forms\Song\SongsForm.cs">
       <SubType>Form</SubType>
     </Compile>

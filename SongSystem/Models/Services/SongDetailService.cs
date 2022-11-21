@@ -86,16 +86,56 @@ namespace SongSystem.Models.Services
 			{
 				model.SingerId = singerId;
 
-				var dto = ParseToSongDetailDTO(model);
-				new SongDetailDAO().Create(dto);
+				Create(model);
 			}
 		}
 
-		public void Update(SongDetailVM model)
+		public void Create(SongDetailVM model)
 		{
-			//todo check existence
 			var dto = ParseToSongDetailDTO(model);
-			new SongDetailDAO().Update(dto);
+			new SongDetailDAO().Create(dto);
+		}
+
+		public void Update(SongDetailVM model, Dictionary<int, string> singerList)
+		{
+			foreach (string singerName in singerList.Values)
+			{
+				bool checkForUpdate = true;
+				model.SingerName = singerName;
+				// check existence
+				if (SongDetailExists(model, checkForUpdate) == true) throw new Exception("Song has existed");
+			}
+
+			var temp = new Dictionary<int, string>(singerList);
+			foreach (var singer in temp)
+			{
+				model.SingerId = singer.Key;
+				model.SingerName = singer.Value;
+
+				//if song detail doesn't exist, create first
+				if (SongDetailExists(model) == false)
+				{
+					Create(model);
+				}
+				else
+				{
+					var dto = ParseToSongDetailDTO(model);
+					new SongDetailDAO().Update(dto);
+				}
+			}
+
+			//get all song detail having the model's song id
+			var allSongDetail = new SongDetailDAO().Get(model.SongId);
+			List<string> detailList = allSongDetail.SingerName.Split(',').ToList();
+			//delete the song details which are not in the update data
+			foreach(string singerName in detailList)
+			{
+				if (singerList.ContainsValue(singerName) == false)
+				{
+					int singerId = new SingerDAO().GetBySingerName(singerName).ToArray()[0].Id;
+					Delete(model.SongId, singerId);
+				}
+			}
 		}
 
 		public void Delete(int songId, int singerId)
@@ -103,10 +143,10 @@ namespace SongSystem.Models.Services
 			new SongDetailDAO().Delete(songId, singerId);
 		}
 
-		private bool SongDetailExists(SongDetailVM model)
+		private bool SongDetailExists(SongDetailVM model, bool checkForUpdate = false)
 		{
 			var dto = ParseToSongDetailDTO(model);
-			var returnModel = new SongDetailDAO().SongDetailExists(dto);
+			var returnModel = new SongDetailDAO().SongDetailExists(dto, checkForUpdate);
 
 			return returnModel != null;
 		}

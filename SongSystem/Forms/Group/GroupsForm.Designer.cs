@@ -132,7 +132,7 @@
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.btnAddNew);
 			this.Name = "GroupsForm";
-			this.Text = "GroupsForm";
+			this.Text = "Group";
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.groupIndexVMBindingSource)).EndInit();
 			this.ResumeLayout(false);

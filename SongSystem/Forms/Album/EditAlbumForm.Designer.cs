@@ -114,7 +114,8 @@
 			this.Controls.Add(this.lblAlbumName);
 			this.Controls.Add(this.txtAlbumName);
 			this.Name = "EditAlbumForm";
-			this.Text = "EditAlbumForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Edit Album";
 			this.Load += new System.EventHandler(this.EditAlbumForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);

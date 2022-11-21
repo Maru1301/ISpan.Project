@@ -54,7 +54,6 @@ join (
 			return ParseToSongValidationVM(dr);
 		}
 
-
 		public IEnumerable<SongIndexVM> GetByLength(TimeSpan lengthStart, TimeSpan lengthEnd)
 		{
 			if (lengthEnd == TimeSpan.Zero)
@@ -347,11 +346,17 @@ join (
 			new SqlDBHelper("default").ExecuteNonQuery(sql, parameters);
 		}
 
-		public SongDetailVM SongDetailExists(SongDetailDTO model)
+		public SongDetailVM SongDetailExists(SongDetailDTO model, bool checkForUpdate = false)
 		{
 			string sql = "select * from SongDetails where SongId = @SongId and SingerId = @SingerId";
+			var parameterbuilder = new SqlParameterBuilder().AddInt("SongId", model.SongId).AddInt("SingerId", model.SingerId);
 
-			var parameters = new SqlParameterBuilder().AddInt("SongId", model.SongId).AddInt("SingerId", model.SingerId).Build();
+			if (checkForUpdate == true)
+			{
+				sql += " and Arranger != @Arranger";
+				parameterbuilder = parameterbuilder.AddVarChar("Arranger", 50, model.Arranger);
+			}
+			var parameters = parameterbuilder.Build();
 
 			var dt = new SqlDBHelper("default").Select(sql, parameters);
 			if (dt.Rows.Count == 0) return null;
@@ -365,19 +370,19 @@ join (
 			return new SongDetailVM
 			{
 				SongId = dr.Field<int>("SongId"),
-				SongName = dr.Field<string>("SongName"),
+				//SongName = dr.Field<string>("SongName"),
 				SingerId = dr.Field<int>("SingerId"),
-				SingerName = dr.Field<string>("SingerName"),
-				GroupName = dr.Field<string>("GroupName"),
-				AlbumName = dr.Field<string>("AlbumName"),
+				//SingerName = dr.Field<string>("SingerName"),
+				//GroupName = dr.Field<string>("GroupName"),
+				//AlbumName = dr.Field<string>("AlbumName"),
 				Composer = dr.Field<string>("Composer"),
 				Arranger = dr.Field<string>("Arranger"),
 				Producer = dr.Field<string>("Producer"),
 				Lyricist = dr.Field<string>("Lyricist"),
 				RecordCompany = dr.Field<string>("RecordCompany"),
 				Lyric = dr.Field<string>("Lyric"),
-				AlbumId = dr.Field<int>("AlbumId"),
-				GroupId = dr.Field<int>("GroupId"),
+				AlbumId = dr.Field<int?>("AlbumId"),
+				GroupId = dr.Field<int?>("GroupId"),
 			};
 		}
 

@@ -30,12 +30,12 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.btnAdd = new System.Windows.Forms.Button();
-			this.userIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Permissions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.userIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.btnAdd = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.userIndexVMBindingSource)).BeginInit();
 			this.SuspendLayout();
@@ -63,22 +63,6 @@
 			this.dataGridView1.Size = new System.Drawing.Size(558, 341);
 			this.dataGridView1.TabIndex = 9;
 			this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-			// 
-			// btnAdd
-			// 
-			this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnAdd.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.btnAdd.Location = new System.Drawing.Point(485, 21);
-			this.btnAdd.Name = "btnAdd";
-			this.btnAdd.Size = new System.Drawing.Size(101, 33);
-			this.btnAdd.TabIndex = 8;
-			this.btnAdd.Text = "Add";
-			this.btnAdd.UseVisualStyleBackColor = true;
-			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-			// 
-			// userIndexVMBindingSource
-			// 
-			this.userIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.UserIndexVM);
 			// 
 			// idDataGridViewTextBoxColumn
 			// 
@@ -116,6 +100,22 @@
 			this.Permissions.ReadOnly = true;
 			this.Permissions.Width = 125;
 			// 
+			// userIndexVMBindingSource
+			// 
+			this.userIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.UserIndexVM);
+			// 
+			// btnAdd
+			// 
+			this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnAdd.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			this.btnAdd.Location = new System.Drawing.Point(485, 21);
+			this.btnAdd.Name = "btnAdd";
+			this.btnAdd.Size = new System.Drawing.Size(101, 33);
+			this.btnAdd.TabIndex = 8;
+			this.btnAdd.Text = "Add";
+			this.btnAdd.UseVisualStyleBackColor = true;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+			// 
 			// UsersForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -124,7 +124,7 @@
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.btnAdd);
 			this.Name = "UsersForm";
-			this.Text = "UsersForm";
+			this.Text = "User";
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.userIndexVMBindingSource)).EndInit();
 			this.ResumeLayout(false);

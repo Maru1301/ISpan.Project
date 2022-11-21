@@ -91,7 +91,8 @@
 			this.Controls.Add(this.btnUpdate);
 			this.Controls.Add(this.btnDelete);
 			this.Name = "EditGenreForm";
-			this.Text = "EditGenreForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Edit Genre";
 			this.Load += new System.EventHandler(this.EditGenreForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);

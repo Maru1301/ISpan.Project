@@ -101,7 +101,8 @@
 			this.Controls.Add(this.lblGroupName);
 			this.Controls.Add(this.txtGroupName);
 			this.Name = "CreateGroupForm";
-			this.Text = "CreateGroupForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Add Group";
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

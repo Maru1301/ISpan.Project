@@ -31,9 +31,13 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateSongForm));
 			this.cmbAlbumName = new System.Windows.Forms.ComboBox();
+			this.albumIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cmbGenreName = new System.Windows.Forms.ComboBox();
+			this.genreIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cmbGroupName = new System.Windows.Forms.ComboBox();
+			this.groupIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cmbSingerName = new System.Windows.Forms.ComboBox();
+			this.singerIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.dtpReleased = new System.Windows.Forms.DateTimePicker();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnAddAlbum = new System.Windows.Forms.Button();
@@ -70,15 +74,11 @@
 			this.txtSingerName = new System.Windows.Forms.TextBox();
 			this.btnEnterSinger = new System.Windows.Forms.Button();
 			this.btnRefresh = new System.Windows.Forms.Button();
-			this.singerIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.groupIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.genreIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.albumIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.singerIndexVMBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.groupIndexVMBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.genreIndexVMBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.albumIndexVMBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.genreIndexVMBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.groupIndexVMBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.singerIndexVMBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// cmbAlbumName
@@ -90,8 +90,12 @@
 			this.cmbAlbumName.Location = new System.Drawing.Point(652, 205);
 			this.cmbAlbumName.Name = "cmbAlbumName";
 			this.cmbAlbumName.Size = new System.Drawing.Size(208, 34);
-			this.cmbAlbumName.TabIndex = 56;
+			this.cmbAlbumName.TabIndex = 5;
 			this.cmbAlbumName.ValueMember = "Id";
+			// 
+			// albumIndexVMBindingSource
+			// 
+			this.albumIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.AlbumIndexVM);
 			// 
 			// cmbGenreName
 			// 
@@ -102,8 +106,12 @@
 			this.cmbGenreName.Location = new System.Drawing.Point(225, 205);
 			this.cmbGenreName.Name = "cmbGenreName";
 			this.cmbGenreName.Size = new System.Drawing.Size(208, 34);
-			this.cmbGenreName.TabIndex = 55;
+			this.cmbGenreName.TabIndex = 4;
 			this.cmbGenreName.ValueMember = "Id";
+			// 
+			// genreIndexVMBindingSource
+			// 
+			this.genreIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.GenreIndexVM);
 			// 
 			// cmbGroupName
 			// 
@@ -114,8 +122,12 @@
 			this.cmbGroupName.Location = new System.Drawing.Point(225, 89);
 			this.cmbGroupName.Name = "cmbGroupName";
 			this.cmbGroupName.Size = new System.Drawing.Size(208, 34);
-			this.cmbGroupName.TabIndex = 54;
+			this.cmbGroupName.TabIndex = 2;
 			this.cmbGroupName.ValueMember = "Id";
+			// 
+			// groupIndexVMBindingSource
+			// 
+			this.groupIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.GroupIndexVM);
 			// 
 			// cmbSingerName
 			// 
@@ -126,8 +138,12 @@
 			this.cmbSingerName.Location = new System.Drawing.Point(652, 33);
 			this.cmbSingerName.Name = "cmbSingerName";
 			this.cmbSingerName.Size = new System.Drawing.Size(208, 34);
-			this.cmbSingerName.TabIndex = 53;
+			this.cmbSingerName.TabIndex = 1;
 			this.cmbSingerName.ValueMember = "Id";
+			// 
+			// singerIndexVMBindingSource
+			// 
+			this.singerIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.SingerIndexVM);
 			// 
 			// dtpReleased
 			// 
@@ -135,7 +151,7 @@
 			this.dtpReleased.Location = new System.Drawing.Point(225, 259);
 			this.dtpReleased.Name = "dtpReleased";
 			this.dtpReleased.Size = new System.Drawing.Size(208, 32);
-			this.dtpReleased.TabIndex = 52;
+			this.dtpReleased.TabIndex = 6;
 			// 
 			// label1
 			// 
@@ -143,6 +159,7 @@
 			this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(739, 265);
 			this.label1.Name = "label1";
+			this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
 			this.label1.Size = new System.Drawing.Size(21, 26);
 			this.label1.TabIndex = 51;
 			this.label1.Text = ":";
@@ -201,7 +218,7 @@
 			this.btnSave.Location = new System.Drawing.Point(636, 439);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(102, 38);
-			this.btnSave.TabIndex = 34;
+			this.btnSave.TabIndex = 15;
 			this.btnSave.Text = "SAVE";
 			this.btnSave.UseVisualStyleBackColor = true;
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -322,7 +339,7 @@
 			this.txtArranger.Location = new System.Drawing.Point(652, 319);
 			this.txtArranger.Name = "txtArranger";
 			this.txtArranger.Size = new System.Drawing.Size(208, 32);
-			this.txtArranger.TabIndex = 30;
+			this.txtArranger.TabIndex = 10;
 			// 
 			// txtRecordCompany
 			// 
@@ -330,7 +347,7 @@
 			this.txtRecordCompany.Location = new System.Drawing.Point(225, 442);
 			this.txtRecordCompany.Name = "txtRecordCompany";
 			this.txtRecordCompany.Size = new System.Drawing.Size(208, 32);
-			this.txtRecordCompany.TabIndex = 29;
+			this.txtRecordCompany.TabIndex = 13;
 			// 
 			// txtProducer
 			// 
@@ -338,7 +355,7 @@
 			this.txtProducer.Location = new System.Drawing.Point(225, 380);
 			this.txtProducer.Name = "txtProducer";
 			this.txtProducer.Size = new System.Drawing.Size(208, 32);
-			this.txtProducer.TabIndex = 28;
+			this.txtProducer.TabIndex = 11;
 			// 
 			// txtComposer
 			// 
@@ -346,7 +363,7 @@
 			this.txtComposer.Location = new System.Drawing.Point(225, 322);
 			this.txtComposer.Name = "txtComposer";
 			this.txtComposer.Size = new System.Drawing.Size(208, 32);
-			this.txtComposer.TabIndex = 27;
+			this.txtComposer.TabIndex = 9;
 			// 
 			// lblSongName
 			// 
@@ -363,16 +380,18 @@
 			this.txtMinute.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtMinute.Location = new System.Drawing.Point(691, 262);
 			this.txtMinute.Name = "txtMinute";
+			this.txtMinute.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
 			this.txtMinute.Size = new System.Drawing.Size(42, 32);
-			this.txtMinute.TabIndex = 32;
+			this.txtMinute.TabIndex = 7;
 			// 
 			// txtSecond
 			// 
 			this.txtSecond.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtSecond.Location = new System.Drawing.Point(762, 261);
 			this.txtSecond.Name = "txtSecond";
+			this.txtSecond.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
 			this.txtSecond.Size = new System.Drawing.Size(42, 32);
-			this.txtSecond.TabIndex = 31;
+			this.txtSecond.TabIndex = 8;
 			// 
 			// txtLanguage
 			// 
@@ -380,7 +399,7 @@
 			this.txtLanguage.Location = new System.Drawing.Point(225, 147);
 			this.txtLanguage.Name = "txtLanguage";
 			this.txtLanguage.Size = new System.Drawing.Size(208, 32);
-			this.txtLanguage.TabIndex = 33;
+			this.txtLanguage.TabIndex = 3;
 			// 
 			// txtSongName
 			// 
@@ -388,7 +407,7 @@
 			this.txtSongName.Location = new System.Drawing.Point(223, 33);
 			this.txtSongName.Name = "txtSongName";
 			this.txtSongName.Size = new System.Drawing.Size(208, 32);
-			this.txtSongName.TabIndex = 26;
+			this.txtSongName.TabIndex = 0;
 			// 
 			// lblLyricist
 			// 
@@ -406,7 +425,7 @@
 			this.txtLyricist.Location = new System.Drawing.Point(652, 377);
 			this.txtLyricist.Name = "txtLyricist";
 			this.txtLyricist.Size = new System.Drawing.Size(208, 32);
-			this.txtLyricist.TabIndex = 63;
+			this.txtLyricist.TabIndex = 12;
 			// 
 			// errorProvider1
 			// 
@@ -430,7 +449,7 @@
 			this.txtLyric.Name = "txtLyric";
 			this.txtLyric.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.txtLyric.Size = new System.Drawing.Size(417, 418);
-			this.txtLyric.TabIndex = 65;
+			this.txtLyric.TabIndex = 14;
 			// 
 			// lblSingerName
 			// 
@@ -476,27 +495,11 @@
 			this.btnRefresh.UseVisualStyleBackColor = true;
 			this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
 			// 
-			// singerIndexVMBindingSource
-			// 
-			this.singerIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.SingerIndexVM);
-			// 
-			// groupIndexVMBindingSource
-			// 
-			this.groupIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.GroupIndexVM);
-			// 
-			// genreIndexVMBindingSource
-			// 
-			this.genreIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.GenreIndexVM);
-			// 
-			// albumIndexVMBindingSource
-			// 
-			this.albumIndexVMBindingSource.DataSource = typeof(SongSystem.Models.ViewModels.AlbumIndexVM);
-			// 
 			// CreateSongForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1367, 535);
+			this.ClientSize = new System.Drawing.Size(1382, 533);
 			this.Controls.Add(this.lblLyric);
 			this.Controls.Add(this.txtLyric);
 			this.Controls.Add(this.lblLyricist);
@@ -536,14 +539,16 @@
 			this.Controls.Add(this.txtSingerName);
 			this.Controls.Add(this.txtLanguage);
 			this.Controls.Add(this.txtSongName);
+			this.MaximizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(1400, 580);
 			this.Name = "CreateSongForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "CreateSongForm";
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.singerIndexVMBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.groupIndexVMBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.genreIndexVMBindingSource)).EndInit();
+			this.Text = "Add Song";
 			((System.ComponentModel.ISupportInitialize)(this.albumIndexVMBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.genreIndexVMBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.groupIndexVMBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.singerIndexVMBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

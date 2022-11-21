@@ -79,7 +79,7 @@
 			this.Controls.Add(this.btnSave);
 			this.Name = "CreateGenreForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "CreateGenreForm";
+			this.Text = "Add Genre";
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

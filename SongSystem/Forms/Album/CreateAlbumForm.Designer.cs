@@ -28,12 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.dtpReleased = new System.Windows.Forms.DateTimePicker();
 			this.btnSave = new System.Windows.Forms.Button();
 			this.lblReleased = new System.Windows.Forms.Label();
 			this.lblAlbumName = new System.Windows.Forms.Label();
 			this.txtAlbumName = new System.Windows.Forms.TextBox();
-			this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
+			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -100,7 +101,8 @@
 			this.Controls.Add(this.lblAlbumName);
 			this.Controls.Add(this.txtAlbumName);
 			this.Name = "CreateAlbumForm";
-			this.Text = "CreateAlbumForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Add Album";
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

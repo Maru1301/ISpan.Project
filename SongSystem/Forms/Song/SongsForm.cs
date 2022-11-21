@@ -24,6 +24,7 @@ namespace SongSystem.Forms.Song
 
 		private DateTimePicker releasedDate = new DateTimePicker();
 
+		//constructor
 		public SongsForm()
 		{
 			InitializeComponent();
@@ -31,10 +32,16 @@ namespace SongSystem.Forms.Song
 			InitForm();
 
 			DisplaySongs();
+
+			this.timer1.Interval = 2000;
+			this.timer1.Enabled = true;
 		}
 
 		private void InitForm()
 		{
+			dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+			dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
 			cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
 			cmbSearch.DropDownStyle = ComboBoxStyle.DropDown;
 			cmbSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -260,6 +267,12 @@ namespace SongSystem.Forms.Song
 		}
 
 		private void btnSearch_Click(object sender, EventArgs e)
+		{
+			DisplaySongs();
+		}
+
+		//自動更新資料
+		private void timer1_Tick(object sender, EventArgs e)
 		{
 			DisplaySongs();
 		}

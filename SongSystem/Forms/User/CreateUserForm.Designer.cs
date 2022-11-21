@@ -144,7 +144,8 @@
 			this.Controls.Add(this.lblAccount);
 			this.Controls.Add(this.lblPassword);
 			this.Name = "CreateUserForm";
-			this.Text = "CreateUserForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Add User";
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

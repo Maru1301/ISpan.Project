@@ -24,6 +24,9 @@ namespace SongSystem.Forms.Singer
 
 			dtpSearchValue.Hide();
 			cbxCategory.SelectedIndex = 0;
+
+			this.timer1.Interval = 2000;
+			this.timer1.Enabled = true;
 		}
 
 		private void DisplaySingers()
@@ -112,6 +115,11 @@ namespace SongSystem.Forms.Singer
 				dtpSearchValue.Hide();
 				txtSearchValue.Show();
 			}
+		}
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			DisplaySingers();
 		}
 	}
 }

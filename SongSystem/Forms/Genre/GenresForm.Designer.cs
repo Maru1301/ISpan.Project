@@ -121,7 +121,7 @@
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.btnAddNew);
 			this.Name = "GenresForm";
-			this.Text = "GenresForm";
+			this.Text = "Genre";
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.genreIndexVMBindingSource)).EndInit();
 			this.ResumeLayout(false);

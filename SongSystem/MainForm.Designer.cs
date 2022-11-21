@@ -34,8 +34,8 @@
 			this.maintainSongGenresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.maintainAlbumsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.maintainGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.lOGOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.maintainUsersToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.lOGOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -49,9 +49,9 @@
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.maintainSongsToolStripMenuItem,
             this.maintainSingersToolStripMenuItem,
+            this.maintainGroupsToolStripMenuItem,
             this.maintainSongGenresToolStripMenuItem,
             this.maintainAlbumsToolStripMenuItem,
-            this.maintainGroupsToolStripMenuItem,
             this.maintainUsersToolStripMenu,
             this.lOGOUTToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -106,15 +106,6 @@
 			this.maintainGroupsToolStripMenuItem.Text = "Maintain Groups";
 			this.maintainGroupsToolStripMenuItem.Click += new System.EventHandler(this.maintainGroupsToolStripMenuItem_Click);
 			// 
-			// lOGOUTToolStripMenuItem
-			// 
-			this.lOGOUTToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
-			this.lOGOUTToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5, 20, 5, 20);
-			this.lOGOUTToolStripMenuItem.Size = new System.Drawing.Size(220, 69);
-			this.lOGOUTToolStripMenuItem.Text = "LOGOUT";
-			this.lOGOUTToolStripMenuItem.Click += new System.EventHandler(this.lOGOUTToolStripMenuItem_Click);
-			// 
 			// maintainUsersToolStripMenu
 			// 
 			this.maintainUsersToolStripMenu.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -123,6 +114,15 @@
 			this.maintainUsersToolStripMenu.Size = new System.Drawing.Size(220, 69);
 			this.maintainUsersToolStripMenu.Text = "Maintain Users";
 			this.maintainUsersToolStripMenu.Click += new System.EventHandler(this.maintainUsersToolStripMenu_Click);
+			// 
+			// lOGOUTToolStripMenuItem
+			// 
+			this.lOGOUTToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
+			this.lOGOUTToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5, 20, 5, 20);
+			this.lOGOUTToolStripMenuItem.Size = new System.Drawing.Size(220, 69);
+			this.lOGOUTToolStripMenuItem.Text = "LOGOUT";
+			this.lOGOUTToolStripMenuItem.Click += new System.EventHandler(this.lOGOUTToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 

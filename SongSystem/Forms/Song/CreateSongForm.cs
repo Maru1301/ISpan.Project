@@ -17,12 +17,15 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SongSystem.Forms.Song
 {
 	public partial class CreateSongForm : Form
 	{
 		private Dictionary<int, string> singerList = new Dictionary<int, string>();
+
+		private Length length = new Length();
 		public CreateSongForm()
 		{
 			InitializeComponent();
@@ -32,40 +35,64 @@ namespace SongSystem.Forms.Song
 
 		private void InitForm()
 		{
-			ComboBox[] cmbs = new ComboBox[] { cmbSingerName, cmbGroupName, cmbGenreName, cmbAlbumName };
+			System.Windows.Forms.ComboBox[] cmbs = new System.Windows.Forms.ComboBox[] { cmbSingerName, cmbGroupName, cmbGenreName, cmbAlbumName };
 			SetComboBox(cmbs);
 
-			SingerIndexVM[] singers = new SingerService().GetAll()
-										.Prepend(new SingerIndexVM())
-										.ToArray();
-			cmbSingerName.DataSource = singers;
-			cmbSingerName.Text = string.Empty;
+			BindSinger();
 
-			GroupIndexVM[] groups = new GroupService().GetAll()
-									.Prepend(new GroupIndexVM())
-									.ToArray();
+			BindGroup();
 
-			cmbGroupName.DataSource = groups;
-			cmbGroupName.Text = string.Empty;
+			BindGenre();
 
-			GenreIndexVM[] genres = new GenreService().GetAll()
-									.Prepend(new GenreIndexVM())
-									.ToArray();
+			BindAlbum();
+			cmbSingerName.SelectedIndex = 0;
+			cmbGroupName.SelectedIndex = 0;
+			cmbGenreName.SelectedIndex = 0;
+			cmbAlbumName.SelectedIndex = 0;
+		}
 
-			cmbGenreName.DataSource = genres;
-			cmbGenreName.Text = string.Empty;
-
+		private void BindAlbum()
+		{
 			AlbumIndexVM[] albums = new AlbumService().GetAll()
 									.Prepend(new AlbumIndexVM())
 									.ToArray();
 
 			cmbAlbumName.DataSource = albums;
-			cmbAlbumName.Text = string.Empty;
+			length.AlbumLength = albums.Length - 1;
 		}
 
-		private void SetComboBox(ComboBox[] cmbs)
+		private void BindGenre()
 		{
-			foreach (ComboBox cmb in cmbs)
+			GenreIndexVM[] genres = new GenreService().GetAll()
+									.Prepend(new GenreIndexVM())
+									.ToArray();
+
+			cmbGenreName.DataSource = genres;
+			length.GenreLength = genres.Length - 1;
+		}
+
+		private void BindGroup()
+		{
+			GroupIndexVM[] groups = new GroupService().GetAll()
+									.Prepend(new GroupIndexVM())
+									.ToArray();
+
+			cmbGroupName.DataSource = groups;
+			length.GroupLength = groups.Length - 1;
+		}
+
+		private void BindSinger()
+		{
+			SingerIndexVM[] singers = new SingerService().GetAll()
+										.Prepend(new SingerIndexVM())
+										.ToArray();
+			cmbSingerName.DataSource = singers;
+			length.SingerLength = singers.Length - 1;
+		}
+
+		private void SetComboBox(System.Windows.Forms.ComboBox[] cmbs)
+		{
+			foreach (System.Windows.Forms.ComboBox cmb in cmbs)
 			{
 				cmb.DropDownStyle = ComboBoxStyle.DropDown;
 				cmb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -76,8 +103,6 @@ namespace SongSystem.Forms.Song
 		private void btnSave_Click(object sender, EventArgs e)
 		{
 			ModelSet modelSet = SetModels();
-
-			//todo miltiple singers
 
 			//validate the field
 			string singerName = txtSingerName.Text;
@@ -207,7 +232,8 @@ namespace SongSystem.Forms.Song
 			CreateSingerForm frm = new CreateSingerForm();
 			frm.ShowDialog();
 
-			InitForm();
+			BindSinger();
+			cmbSingerName.SelectedIndex = length.SingerLength;
 		}
 
 		private void btnAddGroup_Click(object sender, EventArgs e)
@@ -215,7 +241,8 @@ namespace SongSystem.Forms.Song
 			CreateGroupForm frm = new CreateGroupForm();
 			frm.ShowDialog();
 
-			InitForm();
+			BindGroup();
+			cmbGroupName.SelectedIndex = length.GroupLength;
 		}
 
 		private void btnAddGenre_Click(object sender, EventArgs e)
@@ -223,7 +250,8 @@ namespace SongSystem.Forms.Song
 			CreateGenreForm frm = new CreateGenreForm();
 			frm.ShowDialog();
 
-			InitForm();
+			BindGenre();
+			cmbGenreName.SelectedIndex = length.GenreLength;
 		}
 
 		private void btnAddAlbum_Click(object sender, EventArgs e)
@@ -231,12 +259,15 @@ namespace SongSystem.Forms.Song
 			CreateAlbumForm frm = new CreateAlbumForm();
 			frm.ShowDialog();
 
-			InitForm();
+			BindAlbum();
+			cmbAlbumName.SelectedIndex = length.AlbumLength;
 		}
 
 		private void btnEnterSinger_Click(object sender, EventArgs e)
 		{
 			EnterSingerList();
+
+			cmbSingerName.Text = string.Empty;
 		}
 
 		private void btnRefresh_Click(object sender, EventArgs e)
@@ -257,16 +288,18 @@ namespace SongSystem.Forms.Song
 			}
 
 			singerList.Add(singerId, singerName);
-			txtSingerName.Text += singerName + "\r\n";
+			txtSingerName.AppendText(singerName + "\r\n");
 		}
 	}
 }
 
-public class ModelSet
+public class Length
 {
-	public SongValidationVM ValiModel { get; set; }
+	public int SingerLength { get; set; }
 
-	public SongVM SongModel { get; set; }
+	public int GroupLength { get; set; }
 
-	public SongDetailVM DetailModel { get; set; }
+	public int GenreLength { get; set; }
+
+	public int AlbumLength { get; set; }
 }
