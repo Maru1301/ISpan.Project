@@ -33,7 +33,7 @@ namespace SongSystem.Models.Services
 		{
 			if (GenreExists(model) == true) throw new Exception("Genre Name has existed");
 
-			var dto = ParseToGenreDTO(model);
+			var dto = model.ToGenreDTO();
 
 			new GenreDAO().Create(dto);
 		}
@@ -42,7 +42,7 @@ namespace SongSystem.Models.Services
 		{
 			if (GenreExists(model) == true) throw new Exception("Genre Name has existed");
 
-			var dto = ParseToGenreDTO(model);
+			var dto = model.ToGenreDTO();
 
 			new GenreDAO().Update(dto);
 		}
@@ -52,18 +52,9 @@ namespace SongSystem.Models.Services
 			new GenreDAO().Delete(id);
 		}
 
-		private GenreDTO ParseToGenreDTO(GenreVM model)
-		{
-			return new GenreDTO
-			{
-				Id = model.Id,
-				GenreName = model.GenreName,
-			};
-		}
-
 		private bool GenreExists(GenreVM model)
 		{
-			var dto = ParseToGenreDTO(model);
+			var dto = model.ToGenreDTO();
 
 			var returnModel =  new GenreDAO().GenreExists(dto);
 

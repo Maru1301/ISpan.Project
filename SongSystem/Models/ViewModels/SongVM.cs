@@ -10,9 +10,11 @@ namespace SongSystem.Models.ViewModels
 	public class SongIndexVM
 	{
 		public int SongId { get; set; }
+
 		public string SongName { get; set; }
 
 		public int SingerId { get; set; }
+
 		public string SingerName { get; set; }
 
 		public string GroupName { get; set; }
@@ -48,6 +50,7 @@ namespace SongSystem.Models.ViewModels
 		public string SongName { get; set; }
 
 		public int SingerId { get; set; }
+
 		[Required(ErrorMessage = "Singer name is required")]
 		public string SingerName { get; set; }
 
@@ -86,6 +89,7 @@ namespace SongSystem.Models.ViewModels
 		[Required(ErrorMessage = "{0} is required")]
 		public string Lyric { get; set; }
 	}
+
 	public class SongVM
 	{
 		public int SongId { get; set; }

@@ -192,12 +192,17 @@
     <Compile Include="Models\Services\SongDetailService.cs" />
     <Compile Include="Models\Services\SongService.cs" />
     <Compile Include="Models\Services\UserService.cs" />
+    <Compile Include="Infra\Extensions\AlbumExts.cs" />
     <Compile Include="Models\ViewModels\AlbumVM.cs" />
+    <Compile Include="Infra\Extensions\GenreExts.cs" />
     <Compile Include="Models\ViewModels\GenreVM.cs" />
+    <Compile Include="Infra\Extensions\GroupExts.cs" />
     <Compile Include="Models\ViewModels\GroupVM.cs" />
     <Compile Include="Models\ViewModels\LoginVM.cs" />
+    <Compile Include="Infra\Extensions\SingerExts.cs" />
     <Compile Include="Models\ViewModels\SingerVM.cs" />
     <Compile Include="Models\ViewModels\SongVM.cs" />
+    <Compile Include="Infra\Extensions\SongVMExts.cs" />
     <Compile Include="Models\ViewModels\UserIndexVM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

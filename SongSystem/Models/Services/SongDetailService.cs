@@ -92,7 +92,7 @@ namespace SongSystem.Models.Services
 
 		public void Create(SongDetailVM model)
 		{
-			var dto = ParseToSongDetailDTO(model);
+			var dto = model.ToSongDetailDTO();
 			new SongDetailDAO().Create(dto);
 		}
 
@@ -119,7 +119,7 @@ namespace SongSystem.Models.Services
 				}
 				else
 				{
-					var dto = ParseToSongDetailDTO(model);
+					var dto = model.ToSongDetailDTO();
 					new SongDetailDAO().Update(dto);
 				}
 			}
@@ -145,31 +145,10 @@ namespace SongSystem.Models.Services
 
 		private bool SongDetailExists(SongDetailVM model, bool checkForUpdate = false)
 		{
-			var dto = ParseToSongDetailDTO(model);
+			var dto = model.ToSongDetailDTO();
 			var returnModel = new SongDetailDAO().SongDetailExists(dto, checkForUpdate);
 
 			return returnModel != null;
-		}
-
-		private SongDetailDTO ParseToSongDetailDTO(SongDetailVM model)
-		{
-			return new SongDetailDTO
-			{
-				SongId = model.SongId,
-				SongName = model.SongName,
-				SingerId = model.SingerId,
-				SingerName = model.SingerName,
-				Lyric = model.Lyric,
-				GroupId = model.GroupId,
-				GroupName = model.GroupName,
-				AlbumId = model.AlbumId,
-				AlbumName = model.AlbumName,
-				Composer = model.Composer,
-				Arranger = model.Arranger,
-				Lyricist = model.Lyricist,
-				Producer = model.Producer,
-				RecordCompany = model.RecordCompany,
-			};
 		}
 	}
 }

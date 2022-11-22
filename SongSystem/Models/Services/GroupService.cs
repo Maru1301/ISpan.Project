@@ -32,7 +32,7 @@ namespace SongSystem.Models.Services
 		{
 			if (GroupExists(model) == true) throw new Exception("Group has existed");
 
-			var dto = ParseToGroupDTO(model);
+			var dto = model.ToGroupDTO();
 
 			new GroupDAO().Create(dto);
 		}
@@ -41,7 +41,7 @@ namespace SongSystem.Models.Services
 		{
 			if (GroupExists(model) == true) throw new Exception("Group has existed");
 
-			var dto = ParseToGroupDTO(model);
+			var dto = model.ToGroupDTO();
 
 			new GroupDAO().Update(dto);
 		}
@@ -52,19 +52,9 @@ namespace SongSystem.Models.Services
 			new GroupDAO().Delete(id);
 		}
 
-		private GroupDTO ParseToGroupDTO(GroupVM model)
-		{
-			return new GroupDTO
-			{
-				Id= model.Id,
-				GroupName = model.GroupName,
-				Established = model.Established,
-			};
-		}
-
 		public bool GroupExists(GroupVM model)
 		{
-			var dto = ParseToGroupDTO(model);
+			var dto = model.ToGroupDTO();
 			var returnModel = new GroupDAO().GroupExists(dto);
 
 			return returnModel != null;

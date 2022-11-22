@@ -47,7 +47,7 @@ namespace SongSystem.Models.Services
 		{
 			if (GroupExists(model) == false) throw new Exception("Group does not exist");
 
-			var dto = ParseToSingerDTO(model);
+			var dto = model.ToSingerDTO();
 
 			new SingerDAO().Create(dto);
 		}
@@ -56,7 +56,7 @@ namespace SongSystem.Models.Services
 		{
 			if (GroupExists(model) == false) throw new Exception("Group does not exist");
 
-			var dto = ParseToSingerDTO(model);
+			var dto = model.ToSingerDTO();
 
 			new SingerDAO().Update(dto);
 		}
@@ -70,24 +70,10 @@ namespace SongSystem.Models.Services
 		{
 			if (model.GroupName == string.Empty && model.GroupId == null) return true;
 
-			var dto = ParseToSingerDTO(model);
+			var dto = model.ToSingerDTO();
 			var returnModel = new SingerDAO().GroupExists(dto);
 
 			return returnModel != null;
-		}
-
-		private SingerDTO ParseToSingerDTO(SingerVM model)
-		{
-			return new SingerDTO
-			{
-				Id = model.Id,
-				SingerName = model.SingerName,
-				DateOfBirth = model.DateOfBirth,
-				Gender = model.Gender,
-				Country = model.Country,
-				GroupId = model.GroupId,
-				GroupName = model.GroupName,
-			};
 		}
 	}
 }

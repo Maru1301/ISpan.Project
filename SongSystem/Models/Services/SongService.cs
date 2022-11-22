@@ -31,7 +31,7 @@ namespace SongSystem.Models.Services
 		public void Create(SongVM model)
 		{
 			if (SongExists(model) == true) throw new Exception("Song has existed");
-			var dto = ParseToSongDTO(model);
+			var dto = model.ToSongDTO();
 
 			new SongDAO().Create(dto);
 		}
@@ -39,7 +39,7 @@ namespace SongSystem.Models.Services
 		public void Update(SongVM model)
 		{
 			if (SongExists(model) == true) throw new Exception("Song has existed");
-			var dto = ParseToSongDTO(model);
+			var dto = model.ToSongDTO();
 
 			new SongDAO().Update(dto);
 		}
@@ -51,24 +51,10 @@ namespace SongSystem.Models.Services
 
 		private bool SongExists(SongVM model)
 		{
-			var dto = ParseToSongDTO(model);
+			var dto = model.ToSongDTO();
 			var returnModel = new SongDAO().SongExists(dto);
 
 			return returnModel != null;
-		}
-
-		private SongDTO ParseToSongDTO(SongVM model)
-		{
-			return new SongDTO
-			{
-				SongId = model.SongId,
-				SongName = model.SongName,
-				GenreId = model.GenreId,
-				GenreName = model.GenreName,
-				Language = model.Language,
-				Released = model.Released,
-				Length = model.Length,
-			};
 		}
 
 	}

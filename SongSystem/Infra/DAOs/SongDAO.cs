@@ -20,7 +20,7 @@ namespace SongSystem.Infra.DAOs
 
 			return new SqlDBHelper("default").Select(sql, null)
 							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row));
+							.Select(row => ParseToSongIndexVM(row));
 		}
 
 		public SongVM Get(int id)
@@ -133,7 +133,7 @@ namespace SongSystem.Infra.DAOs
 			};
 		}
 
-		private SongIndexVM ToSongIndexVM(DataRow row)
+		private SongIndexVM ParseToSongIndexVM(DataRow row)
 		{
 			return new SongIndexVM
 			{

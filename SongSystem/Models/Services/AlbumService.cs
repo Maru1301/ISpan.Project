@@ -32,7 +32,7 @@ namespace SongSystem.Models.Services
 		{
 			if (AlbumExists(model) == true) throw new Exception("Album Name has existed");
 
-			var dto = ParseToAlbumDTO(model);
+			var dto = model.ToAlbumDTO();
 
 			new AlbumDAO().Create(dto);
 		}
@@ -41,7 +41,7 @@ namespace SongSystem.Models.Services
 		{
 			if (AlbumExists(model) == true) throw new Exception("Genre Name has existed");
 
-			var dto = ParseToAlbumDTO(model);
+			var dto = model.ToAlbumDTO();
 
 			new AlbumDAO().Update(dto);
 		}
@@ -50,19 +50,10 @@ namespace SongSystem.Models.Services
 		{
 			new AlbumDAO().Delete(id);
 		}
-		private AlbumDTO ParseToAlbumDTO(AlbumVM model)
-		{
-			return new AlbumDTO
-			{
-				Id = model.Id,
-				AlbumName = model.AlbumName,
-				Released = model.Released,
-			};
-		}
 
 		private bool AlbumExists(AlbumVM model)
 		{
-			var dto = ParseToAlbumDTO(model);
+			var dto = model.ToAlbumDTO();
 
 			var returnModel = new AlbumDAO().AlbumExists(dto);
 
