@@ -38,7 +38,7 @@ join (
 
 			return new SqlDBHelper("default").Select(sql, null)
 							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row));
+							.Select(row => ParseToSongIndexVM(row));
 		}
 
 		public SongValidationVM Get(int songId)
@@ -68,7 +68,7 @@ join (
 
 			return new SqlDBHelper("default").Select(sql, parameters)
 							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row)); ;
+							.Select(row => ParseToSongIndexVM(row)); ;
 		}
 
 		public IEnumerable<SongIndexVM> GetByReleased(DateTime released)
@@ -84,7 +84,7 @@ join (
 
 			return new SqlDBHelper("default").Select(sql, parameters)
 							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row)); ;
+							.Select(row => ParseToSongIndexVM(row)); ;
 		}
 
 		public IEnumerable<SongIndexVM> GetBySinger(string singer)
@@ -95,7 +95,7 @@ join (
 
 			return new SqlDBHelper("default").Select(sql, parameters)
 							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row)); ;
+							.Select(row => ParseToSongIndexVM(row)); ;
 		}
 
 		public IEnumerable<SongIndexVM> GetByGroup(string group)
@@ -106,7 +106,7 @@ join (
 
 			return new SqlDBHelper("default").Select(sql, parameters)
 							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row)); ;
+							.Select(row => ParseToSongIndexVM(row)); ;
 		}
 
 		public IEnumerable<SongIndexVM> GetByGenre(string genre)
@@ -117,7 +117,7 @@ join (
 
 			return new SqlDBHelper("default").Select(sql, parameters)
 							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row)); ;
+							.Select(row => ParseToSongIndexVM(row)); ;
 		}
 
 		public IEnumerable<SongIndexVM> GetByAlbum(string album)
@@ -128,7 +128,7 @@ join (
 
 			return new SqlDBHelper("default").Select(sql, parameters)
 							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row)); ;
+							.Select(row => ParseToSongIndexVM(row)); ;
 		}
 
 		public IEnumerable<SongIndexVM> GetByLangauge(string language)
@@ -139,7 +139,7 @@ join (
 
 			return new SqlDBHelper("default").Select(sql, parameters)
 							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row)); ;
+							.Select(row => ParseToSongIndexVM(row)); ;
 		}
 
 		public IEnumerable<SongIndexVM> GetByRecordCompany(string recordCompany)
@@ -150,7 +150,7 @@ join (
 
 			return new SqlDBHelper("default").Select(sql, parameters)
 							.AsEnumerable()
-							.Select(row => ToSongIndexVM(row)); ;
+							.Select(row => ParseToSongIndexVM(row)); ;
 		}
 		public void Create(SongDetailDTO model)
 		{
@@ -275,7 +275,7 @@ join (
 			};
 		}
 
-		private SongIndexVM ToSongIndexVM(DataRow row)
+		private SongIndexVM ParseToSongIndexVM(DataRow row)
 		{
 			return new SongIndexVM
 			{

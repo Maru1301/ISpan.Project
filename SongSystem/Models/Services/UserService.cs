@@ -26,23 +26,6 @@ namespace SongSystem.Models.Services
 			new UserDAO().Create(dto);
 		}
 
-		private bool AccountExists(string account, int id = -1)
-		{
-			var parameterBuilder = new SqlParameterBuilder();
-			string sql = "select count(*) as count from Users where Account = @Account";
-			if (id != -1)
-			{
-				sql += " and id != @id";
-				parameterBuilder = parameterBuilder.AddInt("Id", id);
-			}
-
-			var parameters = parameterBuilder.AddVarChar("Account", 50, account)
-									.Build();
-			DataTable dt = new SqlDBHelper("default").Select(sql, parameters);
-
-			return dt.Rows[0].Field<int>("count") > 0;
-		}
-
 		public void Update(UserDTO dto)
 		{
 			//AccountValidation
@@ -62,6 +45,11 @@ namespace SongSystem.Models.Services
 			if (user == null) return false;
 
 			return (user.Password == model.Password);
+		}
+
+		private bool AccountExists(string account, int id = -1)
+		{
+			return new UserDAO().AccountExists(account, id);
 		}
 	}
 }

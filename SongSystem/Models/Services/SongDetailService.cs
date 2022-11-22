@@ -72,6 +72,7 @@ namespace SongSystem.Models.Services
 		{
 			return new SongDetailDAO().GetByRecordCompany(recordCompany);
 		}
+
 		public void Create(SongDetailVM model, Dictionary<int, string> singerList)
 		{
 			// check each singer in song detail
@@ -86,14 +87,8 @@ namespace SongSystem.Models.Services
 			{
 				model.SingerId = singerId;
 
-				Create(model);
+				CreateSongDetail(model);
 			}
-		}
-
-		public void Create(SongDetailVM model)
-		{
-			var dto = model.ToSongDetailDTO();
-			new SongDetailDAO().Create(dto);
 		}
 
 		public void Update(SongDetailVM model, Dictionary<int, string> singerList)
@@ -115,7 +110,7 @@ namespace SongSystem.Models.Services
 				//if song detail doesn't exist, create first
 				if (SongDetailExists(model) == false)
 				{
-					Create(model);
+					CreateSongDetail(model);
 				}
 				else
 				{
@@ -149,6 +144,12 @@ namespace SongSystem.Models.Services
 			var returnModel = new SongDetailDAO().SongDetailExists(dto, checkForUpdate);
 
 			return returnModel != null;
+		}
+
+		public void CreateSongDetail(SongDetailVM model)
+		{
+			var dto = model.ToSongDetailDTO();
+			new SongDetailDAO().Create(dto);
 		}
 	}
 }

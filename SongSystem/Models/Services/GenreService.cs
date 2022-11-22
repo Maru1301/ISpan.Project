@@ -28,7 +28,6 @@ namespace SongSystem.Models.Services
 			return new GenreDAO().Get(genreName);
 		}
 
-
 		public void Create(GenreVM model)
 		{
 			if (GenreExists(model) == true) throw new Exception("Genre Name has existed");
