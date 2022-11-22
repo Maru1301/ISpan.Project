@@ -62,14 +62,7 @@ join (
 			}
 			else if (lengthEnd < lengthStart) throw new Exception("Max time value should not less than min value.");
 
-			string sql = @"select SongId, so.SongName, SingerId, si.SingerName, gr.GroupName, so.Length, g.GenreName, al.AlbumName, so.Released, so.Language, SD.Composer, SD.Arranger, SD.Producer, SD.Lyricist, SD.RecordCompany, SD.Lyric
-							from SongDetails SD
-							inner join Songs so on SD.SongId = so.Id
-							inner join singers si on SD.SingerId = si.Id
-							left join Groups gr on gr.Id = SD.GroupId
-							inner join Genres g on g.Id = So.GenreId
-							left join Albums al on al.Id = SD.AlbumId
-							where so.Length between @lengthStart and @lengthEnd";
+			string sql = originalSql + " where Length between @lengthStart and @lengthEnd";
 
 			var parameters = new SqlParameterBuilder().AddTime("lengthStart", lengthStart).AddTime("lengthEnd", lengthEnd).Build();
 
@@ -85,14 +78,7 @@ join (
 				throw new Exception("Released time should not be over today");
 			}
 
-			string sql = @"select SongId, so.SongName, SingerId, si.SingerName, gr.GroupName, so.Length, g.GenreName, al.AlbumName, so.Released, so.Language, SD.Composer, SD.Arranger, SD.Producer, SD.Lyricist, SD.RecordCompany, SD.Lyric
-							from SongDetails SD
-							inner join Songs so on SD.SongId = so.Id
-							inner join singers si on SD.SingerId = si.Id
-							left join Groups gr on gr.Id = SD.GroupId
-							inner join Genres g on g.Id = So.GenreId
-							left join Albums al on al.Id = SD.AlbumId
-							where so.Released = @Released";
+			string sql = originalSql + " where Released = @Released";
 
 			var parameters = new SqlParameterBuilder().AddDateTime("Released", released).Build();
 
@@ -103,27 +89,7 @@ join (
 
 		public IEnumerable<SongIndexVM> GetBySinger(string singer)
 		{
-			string sql = @"select * from
-(select s.Id as SongId, SongName, Length, GenreName, Language, Released, Lyric, GroupName,AlbumName, 
-composer, Arranger, Lyricist, Producer, RecordCompany,(
-	SELECT CAST(SingerName as nvarchar) + ','
-	from SongDetails
-	join Singers on SongDetails.SingerId = Singers.Id
-	where SongId = S.Id
-	for xml path('')
-	) as SingerName
-from Songs S
-join Genres on Genres.Id = S.GenreId
-join (
-	select SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	from SongDetails SD 
-	join Songs S on S.Id = SD.SongId
-	join Genres G on S.GenreId = G.Id
-	left join Groups Gr on Gr.Id = SD.GroupId
-	left join Albums Al on Al.Id = SD.AlbumId
-	group by SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	) as SongDetail on SongDetail.SongId = S.Id) as SongDetailTable
-where SingerName like @SingerName";
+			string sql = originalSql + " where SingerName like @SingerName";
 
 			var parameters = new SqlParameterBuilder().AddNVarChar("SingerName", 50, singer).Build();
 
@@ -134,27 +100,7 @@ where SingerName like @SingerName";
 
 		public IEnumerable<SongIndexVM> GetByGroup(string group)
 		{
-			string sql = @"select * from
-(select s.Id as SongId, SongName, Length, GenreName, Language, Released, Lyric, GroupName,AlbumName, 
-composer, Arranger, Lyricist, Producer, RecordCompany,(
-	SELECT CAST(SingerName as nvarchar) + ','
-	from SongDetails
-	join Singers on SongDetails.SingerId = Singers.Id
-	where SongId = S.Id
-	for xml path('')
-	) as SingerName
-from Songs S
-join Genres on Genres.Id = S.GenreId
-join (
-	select SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	from SongDetails SD 
-	join Songs S on S.Id = SD.SongId
-	join Genres G on S.GenreId = G.Id
-	left join Groups Gr on Gr.Id = SD.GroupId
-	left join Albums Al on Al.Id = SD.AlbumId
-	group by SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	) as SongDetail on SongDetail.SongId = S.Id) as SongDetailTable
-							where GroupName like @GroupName";
+			string sql = originalSql + " where GroupName like @GroupName";
 
 			var parameters = new SqlParameterBuilder().AddNVarChar("GroupName", 50, group).Build();
 
@@ -165,27 +111,7 @@ join (
 
 		public IEnumerable<SongIndexVM> GetByGenre(string genre)
 		{
-			string sql = @"select * from
-(select s.Id as SongId, SongName, Length, GenreName, Language, Released, Lyric, GroupName,AlbumName, 
-composer, Arranger, Lyricist, Producer, RecordCompany,(
-	SELECT CAST(SingerName as nvarchar) + ','
-	from SongDetails
-	join Singers on SongDetails.SingerId = Singers.Id
-	where SongId = S.Id
-	for xml path('')
-	) as SingerName
-from Songs S
-join Genres on Genres.Id = S.GenreId
-join (
-	select SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	from SongDetails SD 
-	join Songs S on S.Id = SD.SongId
-	join Genres G on S.GenreId = G.Id
-	left join Groups Gr on Gr.Id = SD.GroupId
-	left join Albums Al on Al.Id = SD.AlbumId
-	group by SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	) as SongDetail on SongDetail.SongId = S.Id) as SongDetailTable
-							where GenreName like @GenreName";
+			string sql = originalSql + " where GenreName like @GenreName";
 
 			var parameters = new SqlParameterBuilder().AddNVarChar("GenreName", 50, genre).Build();
 
@@ -196,27 +122,7 @@ join (
 
 		public IEnumerable<SongIndexVM> GetByAlbum(string album)
 		{
-			string sql = @"select * from
-(select s.Id as SongId, SongName, Length, GenreName, Language, Released, Lyric, GroupName,AlbumName, 
-composer, Arranger, Lyricist, Producer, RecordCompany,(
-	SELECT CAST(SingerName as nvarchar) + ','
-	from SongDetails
-	join Singers on SongDetails.SingerId = Singers.Id
-	where SongId = S.Id
-	for xml path('')
-	) as SingerName
-from Songs S
-join Genres on Genres.Id = S.GenreId
-join (
-	select SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	from SongDetails SD 
-	join Songs S on S.Id = SD.SongId
-	join Genres G on S.GenreId = G.Id
-	left join Groups Gr on Gr.Id = SD.GroupId
-	left join Albums Al on Al.Id = SD.AlbumId
-	group by SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	) as SongDetail on SongDetail.SongId = S.Id) as SongDetailTable
-							where AlbumName like @AlbumName";
+			string sql = originalSql + " where AlbumName like @AlbumName";
 
 			var parameters = new SqlParameterBuilder().AddNVarChar("AlbumName", 50, album).Build();
 
@@ -227,27 +133,7 @@ join (
 
 		public IEnumerable<SongIndexVM> GetByLangauge(string language)
 		{
-			string sql = @"select * from
-(select s.Id as SongId, SongName, Length, GenreName, Language, Released, Lyric, GroupName,AlbumName, 
-composer, Arranger, Lyricist, Producer, RecordCompany,(
-	SELECT CAST(SingerName as nvarchar) + ','
-	from SongDetails
-	join Singers on SongDetails.SingerId = Singers.Id
-	where SongId = S.Id
-	for xml path('')
-	) as SingerName
-from Songs S
-join Genres on Genres.Id = S.GenreId
-join (
-	select SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	from SongDetails SD 
-	join Songs S on S.Id = SD.SongId
-	join Genres G on S.GenreId = G.Id
-	left join Groups Gr on Gr.Id = SD.GroupId
-	left join Albums Al on Al.Id = SD.AlbumId
-	group by SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	) as SongDetail on SongDetail.SongId = S.Id) as SongDetailTable
-							where Language like @Language";
+			string sql = originalSql + " where Language like @Language";
 
 			var parameters = new SqlParameterBuilder().AddNVarChar("Language", 50, language).Build();
 
@@ -258,27 +144,7 @@ join (
 
 		public IEnumerable<SongIndexVM> GetByRecordCompany(string recordCompany)
 		{
-			string sql = @"select * from
-(select s.Id as SongId, SongName, Length, GenreName, Language, Released, Lyric, GroupName,AlbumName, 
-composer, Arranger, Lyricist, Producer, RecordCompany,(
-	SELECT CAST(SingerName as nvarchar) + ','
-	from SongDetails
-	join Singers on SongDetails.SingerId = Singers.Id
-	where SongId = S.Id
-	for xml path('')
-	) as SingerName
-from Songs S
-join Genres on Genres.Id = S.GenreId
-join (
-	select SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	from SongDetails SD 
-	join Songs S on S.Id = SD.SongId
-	join Genres G on S.GenreId = G.Id
-	left join Groups Gr on Gr.Id = SD.GroupId
-	left join Albums Al on Al.Id = SD.AlbumId
-	group by SongId, Lyric, GroupName, AlbumName, composer, Arranger, Lyricist, Producer, RecordCompany
-	) as SongDetail on SongDetail.SongId = S.Id) as SongDetailTable
-							where RecordCompany like @RecordCompany";
+			string sql = originalSql + " where RecordCompany like @RecordCompany";
 
 			var parameters = new SqlParameterBuilder().AddNVarChar("RecordCompany", 50, recordCompany).Build();
 

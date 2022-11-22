@@ -18,9 +18,25 @@ namespace SongSystem
 		public LoginForm()
 		{
 			InitializeComponent();
+
+			this.txtPassword.KeyPress += new KeyPressEventHandler(CheckEnter);
 		}
 
 		private void btnLogin_Click(object sender, EventArgs e)
+		{
+			Login();
+		}
+
+		private void CheckEnter(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar.Equals((char)Keys.Enter))
+			{
+				// Enter key pressed
+				Login();
+			}
+		}
+
+		private void Login()
 		{
 			LoginVM model = new LoginVM()
 			{

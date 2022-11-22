@@ -33,7 +33,7 @@ namespace SongSystem.Forms.Song
 
 			DisplaySongs();
 
-			this.timer1.Interval = 2000;
+			this.timer1.Interval = 1000;
 			this.timer1.Enabled = true;
 		}
 
@@ -55,6 +55,7 @@ namespace SongSystem.Forms.Song
 			pickerStart.Size = new Size(cmbSearch.Width / 2 + 10, cmbSearch.Height);
 			pickerStart.Location = new Point(cmbSearch.Location.X, cmbSearch.Location.Y);
 			pickerStart.Value = new DateTime(2000,1,1);
+			pickerStart.TextChanged += new EventHandler(DateTimePicker_TextChanged);
 			pickerStart.Hide();
 			this.Controls.Add(pickerStart);
 
@@ -73,6 +74,7 @@ namespace SongSystem.Forms.Song
 			pickerEnd.Size = new Size(cmbSearch.Width / 2 + 10, cmbSearch.Height);
 			pickerEnd.Location = new Point(cmbSearch.Location.X + 125, cmbSearch.Location.Y);
 			pickerEnd.Value = new DateTime(2000, 1, 1);
+			pickerEnd.TextChanged += new EventHandler(DateTimePicker_TextChanged);
 			pickerEnd.Hide();
 			this.Controls.Add(pickerEnd);
 
@@ -83,13 +85,14 @@ namespace SongSystem.Forms.Song
 			releasedDate.Size = cmbSearch.Size;
 			releasedDate.Location = cmbSearch.Location;
 			releasedDate.Value = DateTime.Today;
+			releasedDate.TextChanged += new EventHandler(DateTimePicker_TextChanged);
 			releasedDate.Hide();
 			this.Controls.Add(releasedDate);
 		}
 
 		private void DisplaySongs()
 		{
-			if(cmbCategory.Text == "Length")
+			if (cmbCategory.Text == "Length")
 			{
 				TimeSpan tsStart = pickerStart.Value.Subtract(new DateTime(2000, 1, 1));
 				TimeSpan tsEnd = pickerEnd.Value.Subtract(new DateTime(2000, 1, 1));
@@ -102,7 +105,7 @@ namespace SongSystem.Forms.Song
 					MessageBox.Show("Search failed! Because " + ex.Message);
 				}
 			}
-			else if(cmbCategory.Text == "Released")
+			else if (cmbCategory.Text == "Released")
 			{
 				DateTime dt = releasedDate.Value;
 				songs = new SongDetailService().GetByReleased(dt).ToArray();
@@ -120,7 +123,7 @@ namespace SongSystem.Forms.Song
 				{
 					value = "%" + value + "%";
 				}
-				if(cmbCategory.Text == "Singer")
+				if (cmbCategory.Text == "Singer")
 				{
 					songs = new SongDetailService().GetBySinger(value).ToArray();
 				}
@@ -177,7 +180,14 @@ namespace SongSystem.Forms.Song
 
 		private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if(cmbCategory.Text == "Singer")
+			BindcmbCategoryData();
+
+			DisplaySongs();
+		}
+
+		private void BindcmbCategoryData()
+		{
+			if (cmbCategory.Text == "Singer")
 			{
 				var singers = new SingerService().GetAll().Prepend(new SingerIndexVM { }).ToArray();
 				cmbSearch.DataSource = singers;
@@ -185,9 +195,8 @@ namespace SongSystem.Forms.Song
 				cmbSearch.ValueMember = "Id";
 				cmbSearch.Show();
 				HideLengthPicker();
-				btnSearch.Location = new Point(483, btnSearch.Location.Y);
 			}
-			else if(cmbCategory.Text == "Group")
+			else if (cmbCategory.Text == "Group")
 			{
 				var groups = new GroupService().GetAll().Prepend(new GroupIndexVM { }).ToArray();
 				cmbSearch.DataSource = groups;
@@ -196,14 +205,12 @@ namespace SongSystem.Forms.Song
 				cmbSearch.Show();
 				HideLengthPicker();
 				releasedDate.Hide();
-				btnSearch.Location = new Point(483, btnSearch.Location.Y);
 			}
 			else if (cmbCategory.Text == "Length")
 			{
 				cmbSearch.Hide();
 				ShowLengthPicker();
 				releasedDate.Hide();
-				btnSearch.Location = new Point(523, btnSearch.Location.Y);
 			}
 			else if (cmbCategory.Text == "Song Genre")
 			{
@@ -214,7 +221,6 @@ namespace SongSystem.Forms.Song
 				cmbSearch.Show();
 				HideLengthPicker();
 				releasedDate.Hide();
-				btnSearch.Location = new Point(483, btnSearch.Location.Y);
 			}
 			else if (cmbCategory.Text == "Album")
 			{
@@ -225,14 +231,12 @@ namespace SongSystem.Forms.Song
 				cmbSearch.Show();
 				HideLengthPicker();
 				releasedDate.Hide();
-				btnSearch.Location = new Point(483, btnSearch.Location.Y);
 			}
 			else if (cmbCategory.Text == "Released")
 			{
 				cmbSearch.Hide();
 				HideLengthPicker();
 				releasedDate.Show();
-				btnSearch.Location = new Point(483, btnSearch.Location.Y);
 			}
 			else if (cmbCategory.Text == "Langauge")
 			{
@@ -240,7 +244,6 @@ namespace SongSystem.Forms.Song
 				cmbSearch.DataSource = null;
 				HideLengthPicker();
 				releasedDate.Hide();
-				btnSearch.Location = new Point(483, btnSearch.Location.Y);
 			}
 			else if (cmbCategory.Text == "Record Company")
 			{
@@ -248,7 +251,6 @@ namespace SongSystem.Forms.Song
 				cmbSearch.DataSource = null;
 				HideLengthPicker();
 				releasedDate.Hide();
-				btnSearch.Location = new Point(483, btnSearch.Location.Y);
 			}
 		}
 
@@ -266,13 +268,23 @@ namespace SongSystem.Forms.Song
 			pickerEnd.Hide();
 		}
 
-		private void btnSearch_Click(object sender, EventArgs e)
+		//自動更新資料
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			if(this.ContainsFocus == false)
+			{
+				DisplaySongs();
+
+				BindcmbCategoryData();
+			}
+		}
+
+		private void cmbSearch_TextChanged(object sender, EventArgs e)
 		{
 			DisplaySongs();
 		}
 
-		//自動更新資料
-		private void timer1_Tick(object sender, EventArgs e)
+		private void DateTimePicker_TextChanged(object sender, EventArgs e)
 		{
 			DisplaySongs();
 		}

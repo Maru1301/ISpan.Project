@@ -25,7 +25,7 @@ namespace SongSystem.Forms.Singer
 			dtpSearchValue.Hide();
 			cbxCategory.SelectedIndex = 0;
 
-			this.timer1.Interval = 2000;
+			this.timer1.Interval = 1000;
 			this.timer1.Enabled = true;
 		}
 
@@ -39,7 +39,7 @@ namespace SongSystem.Forms.Singer
 				return;
 			}
 			string value = txtSearchValue.Text;
-			if(value.Length == 0)
+			if (value.Length == 0)
 			{
 				singers = new SingerService().GetAll().ToArray();
 				DataBind();
@@ -105,7 +105,7 @@ namespace SongSystem.Forms.Singer
 
 		private void cbxCategory_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if(cbxCategory.SelectedIndex == 1) 
+			if (cbxCategory.Text == "Date of birth")
 			{
 				txtSearchValue.Hide();
 				dtpSearchValue.Show();
@@ -115,11 +115,14 @@ namespace SongSystem.Forms.Singer
 				dtpSearchValue.Hide();
 				txtSearchValue.Show();
 			}
+
+			DisplaySingers();
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			DisplaySingers();
+			if (this.ContainsFocus == false)
+				DisplaySingers();
 		}
 	}
 }

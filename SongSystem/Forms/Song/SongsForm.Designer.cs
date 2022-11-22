@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.btnSearch = new System.Windows.Forms.Button();
 			this.cmbCategory = new System.Windows.Forms.ComboBox();
 			this.cmbSearch = new System.Windows.Forms.ComboBox();
 			this.singerIndexVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -54,17 +53,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.songIndexVMBindingSource)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// btnSearch
-			// 
-			this.btnSearch.Font = new System.Drawing.Font("MS Reference Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSearch.Location = new System.Drawing.Point(483, 15);
-			this.btnSearch.Name = "btnSearch";
-			this.btnSearch.Size = new System.Drawing.Size(134, 50);
-			this.btnSearch.TabIndex = 8;
-			this.btnSearch.Text = "Search";
-			this.btnSearch.UseVisualStyleBackColor = true;
-			this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
 			// 
 			// cmbCategory
 			// 
@@ -96,6 +84,7 @@
 			this.cmbSearch.Size = new System.Drawing.Size(173, 36);
 			this.cmbSearch.TabIndex = 7;
 			this.cmbSearch.ValueMember = "Id";
+			this.cmbSearch.TextChanged += new System.EventHandler(this.cmbSearch_TextChanged);
 			// 
 			// singerIndexVMBindingSource
 			// 
@@ -271,7 +260,6 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1243, 521);
-			this.Controls.Add(this.btnSearch);
 			this.Controls.Add(this.cmbCategory);
 			this.Controls.Add(this.cmbSearch);
 			this.Controls.Add(this.btnAdd);
@@ -286,8 +274,6 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Button btnSearch;
 		private System.Windows.Forms.ComboBox cmbCategory;
 		private System.Windows.Forms.ComboBox cmbSearch;
 		private System.Windows.Forms.Button btnAdd;
